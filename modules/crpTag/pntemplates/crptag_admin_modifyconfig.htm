@@ -1,0 +1,26 @@
+<!--[include file="crptag_admin_menu.htm"]-->
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><!--[pnimg modname=core src=configure.gif set=icons/large alt='_MODIFYCONFIG' altml=true]--></div>
+<h2><!--[pnml name="_MODIFYCONFIG" html=1]--></h2>
+<form class="pn-adminform" action="<!--[pnmodurl modname="crpTag" type="admin" func="updateconfig"]-->" method="post" enctype="application/x-www-form-urlencoded">
+<div>
+	<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="crpTag"]-->" />
+	<fieldset>
+		<legend><!--[pnml name=_CRPTAG_GENERAL html=1]--></legend>
+		<div class="pn-adminformrow">
+			<label for="crptag_itemsperpage"><!--[pnml name="_ITEMSPERPAGE" html=1]--></label>
+			<input id="crptag_itemsperpage" type="text" name="tag_itemsperpage" size="3" value="<!--[$tag_itemsperpage|pnvarprepfordisplay]-->" />
+		</div>
+		<div class="pn-adminformrow">
+			<label for="crptag_tag_minlength"><!--[pnml name="_CRPTAG_MINLENGTH" html=1]--></label>
+			<input id="crptag_tag_minlength" type="text" name="tag_tag_minlength" size="3" value="<!--[$tag_minlength|pnvarprepfordisplay]-->" />
+		</div>
+	</fieldset>
+    <!--[pnmodcallhooks hookobject=module hookaction=modifyconfig module=crpTag]-->
+    <div class="pn-adminformrow pn-adminformbuttons">
+    <a href="<!--[pnmodurl modname=crpTag type=admin func=main]-->"><!--[pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"]--></a>
+    <!--[pnbutton src=button_ok.gif set=icons/small alt="_UPDATECONFIG" title="_UPDATECONFIG"]-->
+    </div>
+</div>
+</form>
+</div>

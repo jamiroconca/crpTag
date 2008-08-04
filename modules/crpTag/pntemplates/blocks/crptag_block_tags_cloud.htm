@@ -1,0 +1,13 @@
+<div style="text-align:center;">
+<!--[foreach from=$tags item=tag]-->
+<span style="font-size:<!--[math equation="100+7*x" x=$tag.avg format="%.1f"]-->%;<!--[if ($tag.avg > 2)]-->font-weight:bold;<!--[/if]-->">
+	<a href="<!--[pnmodurl modname="crpTag" type="user" func="display" id=$tag.id]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.name]-->"><!--[$tag.name]--></a>
+</span>
+<!--[/foreach]-->
+<!--[if empty($tags)]-->
+<!--[pnml name=_CRPTAGS_BLOCK_NO_TAGS html=1]-->
+<!--[/if]-->
+</div>
+<div class="pn-menu" style="text-align:center;">
+[&nbsp;<a href="<!--[pnmodurl modname="crpTag" type="user"]-->"><!--[pnml name="_CRPTAG_TAGS"]--></a>]
+</div>

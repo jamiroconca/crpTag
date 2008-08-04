@@ -1,0 +1,37 @@
+<!--[include file="crptag_user_menu.htm"]-->
+
+<table class="pn-datatable">
+	
+	<!--[pnml name="_CRPTAG_TAGS" html=1 assign="table_caption"]-->
+	<caption><!--[sitename]--> <!--[$table_caption]--></caption>
+	
+	<thead>
+	<tr>
+    	<th style="width:20%;"><!--[pnml name="_MODULE" html=1]--></th>
+    	<th style="width:20%;"><!--[pnml name="_CRPTAG_TAG" html=1]--></th>
+    	<th><!--[pnml name="_TITLE" html=1]--></th>
+	</tr>
+	</thead>
+	
+	<!--[foreach from=$tagArray item=tag name=tagged]-->
+    <tr class="<!--[cycle values="odd,even"]-->">
+
+		<td>
+			<a href="<!--[pnmodurl modname=$tag.module]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.module]-->"><!--[$tag.module]--></a>
+		</td>
+		
+		<td>
+			<a href="<!--[pnmodurl modname="crpTag" func="display" id=$tag.id]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.name]-->"><!--[$tag.name]--></a>
+		</td>
+		
+		<td>
+			<!--[pnusergetvar name=uname uid=$tag.item.cr_uid assign=cr_uname]-->
+			<!--[pnmodurl modname=Profile func=view uname=$cr_uname assign=cr_profilelink]-->
+			<a href="<!--[crptagbuildurl module=$tag.module func=$tag.func mapid=$tag.mapid id_module=$tag.id_module]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.item.title]-->"><!--[$tag.item.title]--></a>
+			- <!--[pnml name=_CRPTAG_CREATEDON html=1]--> <!--[$tag.item.cr_date|date_format]--> <!--[pnml name=_BY]--> <a href="<!--[$cr_profilelink]-->"><!--[$cr_uname]--></a>
+      	</td>
+    
+    </tr>
+  	<!--[/foreach]-->
+</table>
+<!--[pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum shift=1 img_prev=images/icons/extrasmall/previous.gif img_next=images/icons/extrasmall/next.gif]-->

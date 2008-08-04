@@ -1,0 +1,7 @@
+/* position styles */
+.crptag-rss {
+	float: right;
+	position: relative;
+	display: inline;
+	margin: 4px 4px 4px 4px;
+}
