@@ -1,6 +1,6 @@
 <div style="text-align:center;">
 <!--[foreach from=$tags item=tag]-->
-<span style="font-size:<!--[math equation="100+10*x" x=$tag.avg format="%.0f"]-->%;<!--[if ($tag.avg > 2)]-->font-weight:bold;<!--[/if]-->">
+<span style="font-size:<!--[math equation="100+15*x" x=$tag.avg format="%.0f"]-->%;<!--[if ($tag.avg > 2)]-->font-weight:bold;<!--[/if]-->">
 	<a href="<!--[pnmodurl modname="crpTag" type="user" func="display" id=$tag.id]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.name]-->"><!--[$tag.name]--></a>
 </span>
 <!--[/foreach]-->
