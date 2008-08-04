@@ -217,7 +217,7 @@ class crpTagDAO
 		$tag_counter = DBUtil :: selectObjectCountByID('crptag_archive', $id_tag, 'id_tag')-1;
 		$tot_counter = DBUtil :: selectObjectCount('crptag_archive');
 		
-		$tag_avg = ($tag_counter * 10 ) / $tot_counter;
+		$tag_avg = ($tag_counter * 100 ) / $tot_counter;
 		
 		return $tag_avg;
 	}
