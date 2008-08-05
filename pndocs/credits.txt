@@ -1,0 +1,8 @@
+crpTag  
+==============================================
+(C) Daniele Conca 2008
+
+PostNuke .8 - Zikula 1.0 (adam_baum) Credits
+==============================================
+Please refer to the file included in PostNuke package available from http://www.postnuke.com or http://noc.postnuke.com for full credits.
+Please refer to the file included in Zikula package available from http://www.zikula.org or http://code.zikula.org for full credits.
