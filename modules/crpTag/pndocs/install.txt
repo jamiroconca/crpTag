@@ -1,0 +1,10 @@
+INSTALL:
+- requirements are at least postnuke 0.8
+
+UPGRADE:
+- standard upgrade procedure
+
+UNINSTALL:
+- default module uninstallation procedure (remember: removing an hooked module will remove his archive of tags, removing crpTag will remove every archive) 
+
+

@@ -1,0 +1,10 @@
+crpTag
+v0.1.0 - ??? August 2008
+- block with module tag cloud
+- block with global tag cloud
+- list of tags by module
+- list of item with the same tag
+- list of global tags
+- tag for News, Reviews, Pages, crpCalendar, crpVideo, FAQ and everything have pnuser display func and objectid param using hooks
+- config: itemsperpage and minimum tag length for storing
+- Initial version
