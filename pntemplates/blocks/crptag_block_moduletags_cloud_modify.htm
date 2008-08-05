@@ -1,0 +1,8 @@
+<div>
+	<label for="tagsblock_modules"><!--[pnml name=_CRPTAG_MODULE]--></label>
+	<select id="tagsblock_modules" name="moduletags">
+		<!--[foreach item=smodule from=$modulesArray]-->
+		<option value="<!--[$smodule]-->" <!--[if $moduletags eq $smodule]--> selected="selected"<!--[/if]-->><!--[$smodule]--></option>
+		<!--[/foreach]-->
+	</select>
+</div>
