@@ -92,6 +92,7 @@ function crpTag_user_display($args)
 
 	$startnum = (int) FormUtil :: getPassedValue('startnum', isset ($args['startnum']) ? $args['startnum'] : 0, 'GET');
 	$id_tag = FormUtil :: getPassedValue('id', isset ($args['id']) ? $args['id'] : null, 'REQUEST');
+	$tagmodule = FormUtil :: getPassedValue('tagmodule', isset ($args['tagmodule']) ? $args['tagmodule'] : null, 'REQUEST');
 	$objectid = FormUtil :: getPassedValue('objectid', isset ($args['objectid']) ? $args['objectid'] : null, 'REQUEST');
 
 	// defaults and input validation
@@ -104,6 +105,7 @@ function crpTag_user_display($args)
 	$modvars = pnModGetVar('crpTag');
 	$tagArray = pnModAPIFunc('crpTag', 'user', 'gettags', array (
 		'id_tag' => $id_tag,
+		'module' => $tagmodule,
 		'extended' => true,
 		'startnum' => $startnum,
 		'numitems' => $modvars['tag_itemsperpage']
@@ -130,7 +132,7 @@ function crpTag_user_display($args)
 	), 'itemsperpage' => $modvars['tag_itemsperpage']);
 
 	$tag = new crpTag();
-	return $tag->ui->displayTaggedItems($tagArray, $modvars, $pager);
+	return $tag->ui->displayTaggedItems($tagArray, $modvars, $pager, $id_tag, $tagmodule);
 }
 
 function crpTag_user_main()
