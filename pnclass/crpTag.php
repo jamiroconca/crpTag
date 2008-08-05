@@ -171,48 +171,14 @@ class crpTag
 
 		return pnRedirect(pnModURL('crpTag', 'admin', 'main'));
 	}
-
+	
 	/**
 	 * Map modules display functions
 	 */
-	function mapModuleDisplayFunc($tagmodule = null)
+	function mapModuleMeta($tagmodule = null, $meta=null)
 	{
-		switch ($tagmodule)
-		{
-			case "News" :
-			case "Reviews" :
-			case "Pages" :
-			case "crpCalendar" :
-			case "crpVideo" :
-			case "FAQ" :
-			default :
-				return "display";
-				break;
-		}
+		$metaArray = pnModAPIFunc($tagmodule, 'user', 'getmodulemeta');
+		return $metaArray[$meta];		
 	}
 
-	/**
-	 * Map modules display functions
-	 */
-	function mapModuleId($tagmodule = null)
-	{
-		switch ($tagmodule)
-		{
-			case "Reviews" :
-				return "id";
-				break;
-			case "Pages" :
-				return "pageid";
-				break;
-			case "crpVideo" :
-				return "videoid";
-				break;
-			case "crpCalendar" :
-			case "News" :
-			case "FAQ" :
-			default :
-				return "objectid";
-				break;
-		}
-	}
 }
