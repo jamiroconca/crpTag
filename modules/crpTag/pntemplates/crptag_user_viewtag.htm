@@ -1,9 +1,12 @@
 <!--[include file="crptag_user_menu.htm"]-->
 
 <table class="pn-datatable">
-	
-	<!--[pnml name="_CRPTAG_TAGS" html=1 assign="table_caption"]-->
-	<caption><!--[$table_caption]--> <!--[pnml name="_FOR" html=1]-->: <!--[$tagArray.0.name]--></caption>
+	<!--[if $id_tag]-->
+	<!--[assign var=listtitle value = $tagArray.0.name]-->
+	<!--[else if $tagmodule]-->
+	<!--[assign var=listtitle value = $tagmodule]-->
+	<!--[/if]-->	
+	<caption><!--[pnml name="_CRPTAG_TAGS" html=1]--> <!--[pnml name="_FOR" html=1]-->: <!--[$listtitle]--></caption>
 	
 	<thead>
 	<tr>
