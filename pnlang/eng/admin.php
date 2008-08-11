@@ -18,3 +18,4 @@ define('_CRPTAG_TAGS_INSERT','Tags (comma separated)');
 // config
 define('_CRPTAG_GENERAL','General settings');
 define('_CRPTAG_MINLENGTH','Min. length(shorter tag will not be stored)');
+define('_CRPTAG_PURGE_ARCHIVE','Purge unused tags from database');
