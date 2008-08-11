@@ -158,8 +158,11 @@ class crpTagDAO
 			{
 				$objArray[$kobj]['func'] = crpTag ::mapModuleMeta($vobj['module'],'displayfunc');
 				$objArray[$kobj]['mapid'] = crpTag ::mapModuleMeta($vobj['module'],'itemid');
+				$moduleId = pnModGetIDFromName($vobj['module']);
+				$moduleInfo = pnModGetInfo($moduleId);
+				$objArray[$kobj]['modname'] = $moduleInfo['displayname'];
 			}
-			$objArray[$kobj]['avg'] = $this->tagAVG($vobj['id']);
+			$objArray[$kobj]['avg'] = $this->tagAVG($vobj['id']);			
 		}
 
 		// Return the items
