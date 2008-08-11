@@ -9,5 +9,5 @@
  * @package crpTag
  */
 
-define('_CRPTAG_TAGS','Tags list');
+define('_CRPTAG_TAGS_BYMODULE','Other tags in %tagmodule%');
 define('_CRPTAG_MODULE','Tags from module');

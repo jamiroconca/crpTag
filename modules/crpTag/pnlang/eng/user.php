@@ -10,7 +10,7 @@
  */
 
 define('_CRPTAG','crpTag');
-define('_CRPTAG_TAGS','Tags list');
+define('_CRPTAG_TAGS','Full tags list');
 define('_CRPTAG_TAG','Tag');
 
 // form
