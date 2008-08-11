@@ -64,19 +64,23 @@ function crpTag_moduletagsblock_display($blockinfo)
 	$apiargs['extended'] = true;
 	$apiargs['groupbyname'] = true;
 	$apiargs['module'] = $vars['moduletags'];
-
+	
 	// call the api
 	$items = pnModAPIFunc('crpTag', 'user', 'gettags', $apiargs);
 
 	// check for an empty return
 	if (empty ($items))
 		return;
-
+	
+	$moduleId = pnModGetIDFromName($vars['moduletags']);
+	$moduleInfo = pnModGetInfo($moduleId);
+	
 	// create the output object
 	$pnRender = pnRender :: getInstance('crpTag', false);
 
 	$pnRender->assign('tags', $items);
 	$pnRender->assign('smodule', $vars['moduletags']);
+	$pnRender->assign('modname', $moduleInfo['displayname']);
 	$pnRender->assign($modvars);
 	
 	$blockinfo['content'] = $pnRender->fetch('blocks/crptag_block_moduletags_cloud.htm');

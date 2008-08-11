@@ -19,13 +19,13 @@
     <tr class="<!--[cycle values="odd,even"]-->">
 
 		<td>
-			<a href="<!--[pnmodurl modname=$tag.module]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.module]-->"><!--[$tag.module]--></a>
+			<a href="<!--[pnmodurl modname=$tag.modname]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.module]-->"><!--[$tag.modname]--></a>
 		</td>
 		
 		<td>
 			<!--[pnusergetvar name=uname uid=$tag.item.cr_uid assign=cr_uname]-->
 			<!--[pnmodurl modname=Profile func=view uname=$cr_uname assign=cr_profilelink]-->
-			<a href="<!--[crptagbuildurl module=$tag.module func=$tag.func mapid=$tag.mapid id_module=$tag.id_module]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.item.title]-->"><!--[$tag.item.title]--></a>
+			<a href="<!--[crptagbuildurl module=$tag.modname func=$tag.func mapid=$tag.mapid id_module=$tag.id_module]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.item.title]-->"><!--[$tag.item.title]--></a>
 			- <!--[pnml name=_CRPTAG_CREATEDON html=1]--> <!--[$tag.item.cr_date|date_format]--> <!--[pnml name=_BY]--> <a href="<!--[$cr_profilelink]-->"><!--[$cr_uname]--></a>
       	</td>
     
