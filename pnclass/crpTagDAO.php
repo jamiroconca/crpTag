@@ -221,4 +221,21 @@ class crpTagDAO
 		
 		return $tag_avg;
 	}
+	
+	/**
+	 * Purge unused tags from db
+	 */
+	function tagPurge()
+	{
+		$pntable = pnDBGetTables();
+		$tagcolumn = $pntable['crptag_column'];
+		$archivecolumn = $pntable['crptag_archive_column'];
+		
+		$sqlStatement = "DELETE $pntable[crptag] 
+			FROM $pntable[crptag] 
+			LEFT JOIN $pntable[crptag_archive] ON ($tagcolumn[id] = $archivecolumn[id_tag]) 
+			WHERE $archivecolumn[id_tag] IS NULL";
+		
+		return DBUtil :: executeSQL($sqlStatement);
+	}
 }

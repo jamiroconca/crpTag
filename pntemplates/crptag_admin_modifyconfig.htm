@@ -13,7 +13,11 @@
 		</div>
 		<div class="pn-adminformrow">
 			<label for="crptag_tag_minlength"><!--[pnml name="_CRPTAG_MINLENGTH" html=1]--></label>
-			<input id="crptag_tag_minlength" type="text" name="tag_tag_minlength" size="3" value="<!--[$tag_minlength|pnvarprepfordisplay]-->" />
+			<input id="crptag_tag_minlength" type="text" name="tag_minlength" size="3" value="<!--[$tag_minlength|pnvarprepfordisplay]-->" />
+		</div>
+		<div class="pn-adminformrow">
+			<label for="crptag_tag_purge"><!--[pnml name="_CRPTAG_PURGE_ARCHIVE" html=1]--></label>
+			<input id="crptag_tag_purge" type="checkbox" name="tag_purge" size="3" value="1" />
 		</div>
 	</fieldset>
     <!--[pnmodcallhooks hookobject=module hookaction=modifyconfig module=crpTag]-->

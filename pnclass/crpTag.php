@@ -35,6 +35,9 @@ class crpTag
 
 		foreach ($tagArray as $kTag => $vTag)
 		{
+			// clear initial and ending spaces
+			$vTag=trim($vTag);
+			
 			if ($idTag = $this->dao->existTag($vTag))
 				$creatingTag[] = $idTag;
 			elseif (!empty ($vTag) && strlen($vTag) >= pnModGetVar('crpTag', 'tag_minlength'))
@@ -77,12 +80,15 @@ class crpTag
 
 		foreach ($tagArray as $kTag => $vTag)
 		{
+			// clear initial and ending spaces
+			$vTag=trim($vTag);
+			
 			if ($idTag = $this->dao->existTag($vTag))
 				$creatingTag[] = $idTag;
 			elseif (!empty ($vTag) && strlen($vTag) >= pnModGetVar('crpTag', 'tag_minlength'))
 			{
 				$idCreated = $this->dao->createTag(array (
-					'name' => $vTag,
+					'name' => trim($vTag),
 					'lu_date' => date('Y-m-d H:i:S'),
 					'lu_uid' => pnUserGetVar('uid')
 				));
@@ -153,6 +159,8 @@ class crpTag
 		// Update module variables
 		$tag_itemsperpage = (int) FormUtil :: getPassedValue('tag_itemsperpage', 25, 'POST');
 		$tag_minlength = (int) FormUtil :: getPassedValue('tag_minlength', 4, 'POST');
+		$tag_purge = (int) FormUtil :: getPassedValue('tag_purge', 0, 'POST');
+		
 		if ($tag_itemsperpage < 1)
 			$tag_itemsperpage = 25;
 		if ($tag_minlength < 1)
@@ -160,7 +168,10 @@ class crpTag
 
 		pnModSetVar('crpTag', 'tag_itemsperpage', $tag_itemsperpage);
 		pnModSetVar('crpTag', 'tag_minlength', $tag_minlength);
-
+		
+		if ($tag_purge)
+			$this->dao->tagPurge();
+		
 		// Let any other modules know that the modules configuration has been updated
 		pnModCallHooks('module', 'updateconfig', 'crpTag', array (
 			'module' => 'crpTag'
