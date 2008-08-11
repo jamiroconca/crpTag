@@ -1,10 +1,11 @@
 crpTag
 v0.1.0 - ??? August 2008
+- config: purge unused tags, when an item have his tags changed it could be that any other item use the one which have been deleted, so better remove them on a regular basis
 - block with module tag cloud
 - block with global tag cloud
 - list of tags by module
 - list of item with the same tag
 - list of global tags
-- tag for News, Reviews, Pages, crpCalendar, crpVideo, FAQ and everything have pnuser display func and objectid param using hooks
+- tag for News, Reviews, Pages, crpCalendar, crpVideo, FAQ and everything have getmodulemeta and get pnuserapi functions
 - config: itemsperpage and minimum tag length for storing
 - Initial version
