@@ -9,4 +9,4 @@
  * @package crpTag
  */
 
-define('_CRPTAG_TAGS','Tags list');
+define('_CRPTAG_TAGS','Full tags list');
