@@ -127,7 +127,8 @@ function crpTag_user_display($args)
 		'user',
 		'countitems',
 		array (
-			'id_tag' => $id_tag
+			'id_tag' => $id_tag,
+			'tagmodule' => $tagmodule
 		)
 	), 'itemsperpage' => $modvars['tag_itemsperpage']);
 
@@ -210,8 +211,7 @@ function crpTag_user_usertags($args)
 		'uid' => $uid,
 		'extended' => true,
 		'startnum' => $startnum,
-		'numitems' => $modvars['tag_itemsperpage'],
-		'groupbyname' => true
+		'numitems' => $modvars['tag_itemsperpage']
 	));
 
 	foreach ($tagArray as $ktag => $vtag)
