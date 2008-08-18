@@ -11,6 +11,7 @@
 	<thead>
 	<tr>
     	<th style="width:25%;"><!--[pnml name="_MODULE" html=1]--></th>
+    	<th style="width:20%;"><!--[pnml name="_CRPTAG_TAG" html=1]--></th>
     	<th><!--[pnml name="_TITLE" html=1]--></th>
 	</tr>
 	</thead>
@@ -20,6 +21,10 @@
 
 		<td>
 			<a href="<!--[pnmodurl modname=$tag.modname]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.module]-->"><!--[$tag.modname]--></a>
+		</td>
+		
+		<td>
+			<a href="<!--[pnmodurl modname="crpTag" func="display" id=$tag.id]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.name]-->"><!--[$tag.name]--></a>
 		</td>
 		
 		<td>
