@@ -74,5 +74,5 @@ function crpTag_userapi_countitems($args)
 	}
 
 	$tag = new crpTag();
-	return $tag->dao->countItems($args['id_tag'], $args['id_module'], $args['module'], $args['uid']);
+	return $tag->dao->countItems($args['id_tag'], $args['id_module'], $args['tagmodule'], $args['uid']);
 }
