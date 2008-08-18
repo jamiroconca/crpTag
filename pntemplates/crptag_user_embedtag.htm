@@ -1,8 +1,8 @@
 <!--[if pnModLangLoad('crpTag')]--><!-- lang load hack --><!--[/if]-->
 
 <h4><!--[pnml name="_CRPTAG_TAGS" html=1]--></h4>
-<div style="overflow: hidden;">
+<div style="white-space:normal;">
 <!--[foreach item=tag from=$tagArray name=tagged]-->
-<a href="<!--[pnmodurl modname="crpTag" func="display" id=$tag.id]-->" title="<!--[pnml name=_CRPTAG_TAGGED_AS html=1]--> <!--[$tag.name]-->"><!--[$tag.name]--></a><!--[if !$smarty.foreach.tagged.last]-->&nbsp;<strong>&middot;</strong>&nbsp;<!--[/if]-->
+<span ><a style="white-space:nowrap;" href="<!--[pnmodurl modname="crpTag" func="display" id=$tag.id]-->" title="<!--[pnml name=_CRPTAG_TAGGED_AS html=1]--> <!--[$tag.name]-->"><!--[$tag.name]--></a></span><!--[if !$smarty.foreach.tagged.last]--> <strong>&middot;</strong> <!--[/if]-->
 <!--[/foreach]-->
 </div>
