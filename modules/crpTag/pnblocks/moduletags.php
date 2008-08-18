@@ -21,7 +21,7 @@ function crpTag_moduletagsblock_init()
 
 /**
  * get information on block
- * 
+ *
  */
 function crpTag_moduletagsblock_info()
 {
@@ -63,18 +63,18 @@ function crpTag_moduletagsblock_display($blockinfo)
 	$apiargs['numitems'] = $modvars['tag_itemsperpage'];
 	$apiargs['extended'] = true;
 	$apiargs['groupbyname'] = true;
-	$apiargs['module'] = $vars['moduletags'];
-	
+	$apiargs['tagmodule'] = $vars['moduletags'];
+
 	// call the api
 	$items = pnModAPIFunc('crpTag', 'user', 'gettags', $apiargs);
 
 	// check for an empty return
 	if (empty ($items))
 		return;
-	
+
 	$moduleId = pnModGetIDFromName($vars['moduletags']);
 	$moduleInfo = pnModGetInfo($moduleId);
-	
+
 	// create the output object
 	$pnRender = pnRender :: getInstance('crpTag', false);
 
@@ -82,9 +82,9 @@ function crpTag_moduletagsblock_display($blockinfo)
 	$pnRender->assign('smodule', $vars['moduletags']);
 	$pnRender->assign('modname', $moduleInfo['displayname']);
 	$pnRender->assign($modvars);
-	
+
 	$blockinfo['content'] = $pnRender->fetch('blocks/crptag_block_moduletags_cloud.htm');
-		
+
 	return pnBlockThemeBlock($blockinfo);
 }
 
@@ -98,7 +98,7 @@ function crpTag_moduletagsblock_modify($blockinfo)
 {
 	// Break out options from our content field
 	$vars = pnBlockVarsFromContent($blockinfo['content']);
-	
+
 	$modulesArray = array_keys(pnModAPIFunc('Modules','admin','gethookedmodules',array('hookmodname' => 'crpTag')));
 
 	// Create output object
@@ -125,7 +125,7 @@ function  crpTag_moduletagsblock_update($blockinfo)
 
 	// alter the corresponding variable
 	$vars['moduletags'] = FormUtil :: getPassedValue('moduletags', null);
-	
+
 	// write back the new contents
 	$blockinfo['content'] = pnBlockVarsToContent($vars);
 
