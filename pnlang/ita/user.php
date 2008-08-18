@@ -12,9 +12,10 @@
 define('_CRPTAG','crpTag');
 define('_CRPTAG_TAGS','Elenco completo tags');
 define('_CRPTAG_TAG','Tag');
+define('_CRPTAG_MINE','Miei tags');
 
 // form
 define('_CRPTAG_TAGS_INSERT','Tags (separati da virgole)');
 // display
 define('_CRPTAG_TAGGED_AS','Altri oggetti taggati come');
-define('_CRPTAG_CREATEDON','Created on');
+define('_CRPTAG_CREATEDON','Creato il');

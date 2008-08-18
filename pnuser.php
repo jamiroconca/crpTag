@@ -180,3 +180,59 @@ function crpTag_user_main()
 	$tag = new crpTag();
 	return $tag->ui->displayMain($tagArray, $modvars, $pager);
 }
+
+/**
+ * display tags by user
+ *
+ * @return string html string
+ */
+function crpTag_user_usertags($args)
+{
+	// Security check
+	if (!SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_READ))
+	{
+		return LogUtil :: registerPermissionError();
+	}
+
+	$startnum = (int) FormUtil :: getPassedValue('startnum', isset ($args['startnum']) ? $args['startnum'] : 0, 'GET');
+	$uid = FormUtil :: getPassedValue('uid', isset ($args['uid']) ? $args['uid'] : null, 'REQUEST');
+	$objectid = FormUtil :: getPassedValue('objectid', isset ($args['objectid']) ? $args['objectid'] : null, 'REQUEST');
+
+	// defaults and input validation
+	if (!is_numeric($startnum) || $startnum < 0)
+		$startnum = 1;
+	if (!empty ($objectid))
+		$uid = $objectid;
+
+	// get all module vars for later use
+	$modvars = pnModGetVar('crpTag');
+	$tagArray = pnModAPIFunc('crpTag', 'user', 'gettags', array (
+		'uid' => $uid,
+		'extended' => true,
+		'startnum' => $startnum,
+		'numitems' => $modvars['tag_itemsperpage']
+	));
+
+	foreach ($tagArray as $ktag => $vtag)
+	{
+		$item = pnModAPIFunc($vtag['module'], 'user', 'get', array (
+			$vtag['mapid'] => $vtag['id_module']
+		));
+		if (SecurityUtil :: checkPermission("$vtag[module]::", "::", ACCESS_READ))
+		{
+			$tagArray[$ktag]['item'] = $item;
+		}
+	}
+
+	$pager = array (
+		'numitems' => pnModAPIFunc('crpTag',
+		'user',
+		'countitems',
+		array (
+			'uid' => $uid
+		)
+	), 'itemsperpage' => $modvars['tag_itemsperpage']);
+
+	$tag = new crpTag();
+	return $tag->ui->displayMyTaggedItems($tagArray, $modvars, $pager, $uid);
+}
