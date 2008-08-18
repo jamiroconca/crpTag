@@ -210,7 +210,8 @@ function crpTag_user_usertags($args)
 		'uid' => $uid,
 		'extended' => true,
 		'startnum' => $startnum,
-		'numitems' => $modvars['tag_itemsperpage']
+		'numitems' => $modvars['tag_itemsperpage'],
+		'groupbyname' => true
 	));
 
 	foreach ($tagArray as $ktag => $vtag)
