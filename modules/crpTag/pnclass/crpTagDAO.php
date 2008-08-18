@@ -3,7 +3,7 @@
 /**
  * crpTag
  *
- * @copyright (c) 2007, Daniele Conca
+ * @copyright (c) 2008 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -88,7 +88,8 @@ class crpTagDAO
 	/**
 	 * Return list by parameters
 	 */
-	function getTags($id_tag = null, $id_module = null, $module = null, $extended = null, $startnum = 1, $numitems = null, $groupbyname=null)
+	function getTags($id_tag = null, $id_module = null, $module = null, $extended = null, $startnum = 1, $numitems = null,
+										$groupbyname=null, $uid=null)
 	{
 		(empty ($startnum)) ? $startnum = 1 : '';
 		(empty ($numitems)) ? $numitems = pnModGetVar('crpTag', 'tag_itemsperpage') : '';
@@ -111,14 +112,17 @@ class crpTagDAO
 
 		if ($module)
 			$queryargs[] = "($archivecolumn[module]='" . DataUtil :: formatForStore($module) . "')";
-		
+
+		if ($uid)
+			$queryargs[] = "($pntable[crptag_archive].$archivecolumn[cr_uid]='" . DataUtil :: formatForStore($uid) . "')";
+
 		$queryargs[] = "($archivecolumn[id_module] IS NOT NULL)";
-		
+
 		$groupby = "$pntable[crptag_archive].$archivecolumn[id_tag], $pntable[crptag_archive].$archivecolumn[id_module], $pntable[crptag_archive].$archivecolumn[module]";
 		if ($groupbyname)
-			$groupby = "$pntable[crptag].$tagcolumn[name]";			
-		
-		
+			$groupby = "$pntable[crptag].$tagcolumn[name]";
+
+
 		$where = null;
 		if (count($queryargs) > 0)
 		{
@@ -151,7 +155,7 @@ class crpTagDAO
 			return LogUtil :: registerError(_GETFAILED);
 		}
 
-		
+
 		foreach ($objArray as $kobj => $vobj)
 		{
 			if ($extended)
@@ -162,7 +166,7 @@ class crpTagDAO
 				$moduleInfo = pnModGetInfo($moduleId);
 				$objArray[$kobj]['modname'] = $moduleInfo['displayname'];
 			}
-			$objArray[$kobj]['avg'] = $this->tagAVG($vobj['id']);			
+			$objArray[$kobj]['avg'] = $this->tagAVG($vobj['id']);
 		}
 
 		// Return the items
@@ -171,10 +175,10 @@ class crpTagDAO
 
 	/**
 	 * Return items count
-	 * 
+	 *
 	 * @return int on success
 	 */
-	function countItems($id_tag = null, $id_module = null, $module = null)
+	function countItems($id_tag = null, $id_module = null, $module = null, $uid = null)
 	{
 		$pntable = pnDBGetTables();
 		$tagcolumn = $pntable['crptag_column'];
@@ -193,7 +197,11 @@ class crpTagDAO
 		{
 			$queryargs[] = "($archivecolumn[module]='" . DataUtil :: formatForStore($module) . "')";
 		}
-		
+		if ($uid)
+		{
+			$queryargs[] = "($archivecolumn[cr_uid]='" . DataUtil :: formatForStore($uid) . "')";
+		}
+
 		$queryargs[] = "($archivecolumn[id_module] IS NOT NULL)";
 
 		$where = null;
@@ -204,13 +212,15 @@ class crpTagDAO
 
 		if ($id_tag)
 			return DBUtil :: selectObjectCountByID('crptag_archive', $id_tag, 'id_tag');
-		elseif 
+		elseif
 			($module) return DBUtil :: selectObjectCountByID('crptag_archive', $module, 'module');
+		elseif
+			($uid) return DBUtil :: selectObjectCountByID('crptag_archive', $uid, 'cr_uid');
 		else
 			return DBUtil :: selectObjectCount('crptag_archive', $where, 'id_tag');
 
 	}
-	
+
 	/**
 	 * Calculate tag average value
 	 */
@@ -219,12 +229,12 @@ class crpTagDAO
 		// start counter from zero
 		$tag_counter = DBUtil :: selectObjectCountByID('crptag_archive', $id_tag, 'id_tag')-1;
 		$tot_counter = DBUtil :: selectObjectCount('crptag_archive');
-		
+
 		$tag_avg = ($tag_counter * 100 ) / $tot_counter;
-		
+
 		return $tag_avg;
 	}
-	
+
 	/**
 	 * Purge unused tags from db
 	 */
@@ -233,12 +243,12 @@ class crpTagDAO
 		$pntable = pnDBGetTables();
 		$tagcolumn = $pntable['crptag_column'];
 		$archivecolumn = $pntable['crptag_archive_column'];
-		
-		$sqlStatement = "DELETE $pntable[crptag] 
-			FROM $pntable[crptag] 
-			LEFT JOIN $pntable[crptag_archive] ON ($tagcolumn[id] = $archivecolumn[id_tag]) 
+
+		$sqlStatement = "DELETE $pntable[crptag]
+			FROM $pntable[crptag]
+			LEFT JOIN $pntable[crptag_archive] ON ($tagcolumn[id] = $archivecolumn[id_tag])
 			WHERE $archivecolumn[id_tag] IS NULL";
-		
+
 		return DBUtil :: executeSQL($sqlStatement);
 	}
 }

@@ -2,7 +2,7 @@
 /**
  * crpTag
  *
- * @copyright (c) 2007, Daniele Conca
+ * @copyright (c) 2008 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -18,16 +18,16 @@ function crpTag_userapi_createtag($args=array())
 	{
 		return LogUtil :: registerPermissionError();
 	}
-	
+
 	if (!$args['objectid'] || !$args['extrainfo']['module'])
 	{
 		LogUtil :: registerError(_MODARGSERROR);
 	}
-	
+
 	$taglist = FormUtil :: getPassedValue('taglist', null, 'POST');
 	$tag = new crpTag();
-	
-	return $tag->insertTag($args['objectid'],$args['extrainfo'],$taglist);	
+
+	return $tag->insertTag($args['objectid'],$args['extrainfo'],$taglist);
 }
 
 function crpTag_userapi_updatetag($args=array())
@@ -37,16 +37,16 @@ function crpTag_userapi_updatetag($args=array())
 	{
 		return LogUtil :: registerPermissionError();
 	}
-	
+
 	if (!$args['objectid'] || !$args['extrainfo']['module'])
 	{
 		LogUtil :: registerError(_MODARGSERROR);
 	}
-	
+
 	$taglist = FormUtil :: getPassedValue('taglist', null, 'POST');
 	$tag = new crpTag();
-	
-	return $tag->updateTag($args['objectid'],$args['extrainfo'],$taglist);	
+
+	return $tag->updateTag($args['objectid'],$args['extrainfo'],$taglist);
 }
 
 function crpTag_userapi_gettags($args=array())
@@ -56,9 +56,9 @@ function crpTag_userapi_gettags($args=array())
 	{
 		return LogUtil :: registerPermissionError();
 	}
-	
+
 	$tag = new crpTag();
-	return $tag->dao->getTags($args['id_tag'],$args['id_module'],$args['module'],$args['extended'],$args['startnum'],$args['numitems'],$args['groupbyname']);
+	return $tag->dao->getTags($args['id_tag'],$args['id_module'],$args['module'],$args['extended'],$args['startnum'],$args['numitems'],$args['groupbyname'],$args['uid']);
 }
 
 /**
@@ -72,7 +72,7 @@ function crpTag_userapi_countitems($args)
 	{
 		return LogUtil::registerPermissionError();
 	}
-	
-	$tag = new crpTag();	
-	return $tag->dao->countItems($args['id_tag'], $args['id_module'], $args['module']);
+
+	$tag = new crpTag();
+	return $tag->dao->countItems($args['id_tag'], $args['id_module'], $args['module'], $args['uid']);
 }

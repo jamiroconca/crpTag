@@ -12,6 +12,7 @@
 define('_CRPTAG','crpTag');
 define('_CRPTAG_TAGS','Full tags list');
 define('_CRPTAG_TAG','Tag');
+define('_CRPTAG_MINE','My tags');
 
 // form
 define('_CRPTAG_TAGS_INSERT','Tags (comma separated)');
