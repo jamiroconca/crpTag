@@ -2,7 +2,7 @@
 /**
  * crpTag
  *
- * @copyright (c) 2007, Daniele Conca
+ * @copyright (c) 2008 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -12,7 +12,7 @@
 $modversion['name'] = _CRPTAG_NAME;
 $modversion['displayname'] = _CRPTAG_DISPLAYNAME;
 $modversion['description'] = _CRPTAG_DESCRIPTION;
-$modversion['version'] = '0.1.0';
+$modversion['version'] = '0.1.1';
 $modversion['credits'] = 'pndocs/credits.txt';
 $modversion['help'] = 'pndocs/install.txt';
 $modversion['changelog'] = 'pndocs/changelog.txt';
