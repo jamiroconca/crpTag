@@ -16,8 +16,12 @@
 			<input id="crptag_tag_minlength" type="text" name="tag_minlength" size="3" value="<!--[$tag_minlength|pnvarprepfordisplay]-->" />
 		</div>
 		<div class="pn-adminformrow">
+			<label for="crptag_use_ajax"><!--[pnml name="_CRPTAG_USE_AJAX" html=1]--></label>
+			<input id="crptag_use_ajax" type="checkbox" name="tag_use_ajax" <!--[if $tag_use_ajax]--> checked="checked"<!--[/if]-->/>
+		</div>
+		<div class="pn-adminformrow">
 			<label for="crptag_tag_purge"><!--[pnml name="_CRPTAG_PURGE_ARCHIVE" html=1]--></label>
-			<input id="crptag_tag_purge" type="checkbox" name="tag_purge" size="3" value="1" />
+			<input id="crptag_tag_purge" type="checkbox" name="tag_purge" />
 		</div>
 	</fieldset>
     <!--[pnmodcallhooks hookobject=module hookaction=modifyconfig module=crpTag]-->
