@@ -2,7 +2,7 @@
 /**
  * crpTag
  *
- * @copyright (c) 2007, Daniele Conca
+ * @copyright (c) 2008 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -16,17 +16,17 @@ function crpTag_init()
 	{
 		return false;
 	}
-	
+
 	// create table
 	if (!DBUtil :: createTable('crptag_archive'))
 	{
 		return false;
 	}
-	
+
 	// Create the index
   if (!DBUtil :: createIndex('tag_module', 'crptag_archive', array('module')))
   	return false;
-  	
+
   if (!DBUtil :: createIndex('tag_archive', 'crptag_archive', array('id_tag','id_module', 'module'), array('UNIQUE' => '1')))
   	return false;
 
@@ -34,6 +34,7 @@ function crpTag_init()
 	// Set default pages per page
 	pnModSetVar('crpTag', 'tag_itemsperpage', 25);
 	pnModSetVar('crpTag', 'tag_minlength', 4);
+	pnModSetVar('crpTag', 'tag_use_ajax', false);
 
 	// Set up module hooks for users
 	// embed on creation form
@@ -51,11 +52,11 @@ function crpTag_init()
   // display hooked tags
 	if (!pnModRegisterHook('item', 'display', 'GUI', 'crpTag', 'user', 'embedtag'))
 		return false;
-	
+
   // remove embed on item deletion
 	if (!pnModRegisterHook('item', 'delete', 'API', 'crpTag', 'admin', 'deletetag'))
 		return false;
-	
+
 	// remove hook on module deletion
 	if (!pnModRegisterHook('module', 'remove', 'API', 'crpTag', 'admin', 'removetag'))
 		return false;
@@ -70,6 +71,10 @@ function crpTag_upgrade($oldversion)
 	switch ($oldversion)
 	{
 		case "0.1.0" :
+			pnModSetVar('crpTag', 'tag_use_ajax', false);
+			return crpTag_upgrade("0.1.1");
+			break;
+		case "0.1.1" :
 			break;
 	}
 	// Update successful
@@ -94,12 +99,12 @@ function crpTag_delete()
   // display hooked video
 	if (!pnModUnRegisterHook('item', 'display', 'GUI', 'crpTag', 'user', 'embedtag'))
 		return false;
-	
+
 	// Set up module hooks for admins
   // remove embed on item deletion
 	if (!pnModUnRegisterHook('item', 'delete', 'API', 'crpTag', 'admin', 'deletetag'))
 		return false;
-				
+
 	// remove hook on module deletion
 	if (!pnModUnRegisterHook('module', 'remove', 'API', 'crpTag', 'admin', 'removetag'))
 		return false;
