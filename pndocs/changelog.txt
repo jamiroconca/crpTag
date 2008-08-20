@@ -1,4 +1,6 @@
 crpTag
+v0.1.1 - 20 August 2008
+- added use ajax for input module var, through Proto!MultiSelect
 v0.1.0 - 11 August 2008
 - config: purge unused tags, when an item have his tags changed it could be that any other item use the one which have been deleted, so better remove them on a regular basis
 - block with module tag cloud
