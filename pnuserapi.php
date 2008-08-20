@@ -58,7 +58,8 @@ function crpTag_userapi_gettags($args=array())
 	}
 
 	$tag = new crpTag();
-	return $tag->dao->getTags($args['id_tag'],$args['id_module'],$args['module'],$args['extended'],$args['startnum'],$args['numitems'],$args['groupbyname'],$args['uid']);
+	return $tag->dao->getTags($args['id_tag'],$args['id_module'],$args['module'],$args['extended'],$args['startnum'],
+														$args['numitems'],$args['groupbyname'],$args['uid']);
 }
 
 /**
@@ -75,4 +76,22 @@ function crpTag_userapi_countitems($args)
 
 	$tag = new crpTag();
 	return $tag->dao->countItems($args['id_tag'], $args['id_module'], $args['tagmodule'], $args['uid']);
+}
+
+/**
+ * retrieve list of events, filtered as specified, for form use
+ *
+ * @return array events
+ */
+function crpTag_userapi_getall_formlist($args=array())
+{
+	// Security check
+	if (!SecurityUtil::checkPermission('crpTag::', '::', ACCESS_READ))
+	{
+		return LogUtil::registerPermissionError();
+	}
+
+	$tag = new crpTag();
+	return $tag->dao->formList($args['id_tag'],$args['id_module'],$args['module'],$args['startnum'],
+																	$args['numitems'],$args['groupbyname'],$args['uid'],$args['alias']);
 }
