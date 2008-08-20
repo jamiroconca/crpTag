@@ -16,7 +16,7 @@
  */
 function crpTag_ajax_getTags()
 {
-	if (!SecurityUtil::checkPermission('crpTag::', '::', ACCESS_READ))
+	if (!SecurityUtil::checkPermission('crpTag::', '::', ACCESS_COMMENT))
 	{
 		AjaxUtil :: error(pnVarPrepHTMLDisplay(_MODULENOAUTH));
 	}
