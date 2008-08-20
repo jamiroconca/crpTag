@@ -155,7 +155,6 @@ class crpTagDAO
 			return LogUtil :: registerError(_GETFAILED);
 		}
 
-
 		foreach ($objArray as $kobj => $vobj)
 		{
 			if ($extended)
@@ -250,5 +249,86 @@ class crpTagDAO
 			WHERE $archivecolumn[id_tag] IS NULL";
 
 		return DBUtil :: executeSQL($sqlStatement);
+	}
+
+	/**
+	 * Return list by parameters
+	 */
+	function formList($id_tag = null, $id_module = null, $module = null, $startnum = 1, $numitems = null,
+										$groupbyname=null, $uid=null, $alias=null)
+	{
+		(empty ($startnum)) ? $startnum = 1 : '';
+		(empty ($numitems)) ? $numitems = pnModGetVar('crpTag', 'tag_itemsperpage') : '';
+
+		if (!is_numeric($startnum) || !is_numeric($numitems))
+		{
+			return LogUtil :: registerError(_MODARGSERROR);
+		}
+
+		$pntable = pnDBGetTables();
+		$tagcolumn = $pntable['crptag_column'];
+		$archivecolumn = $pntable['crptag_archive_column'];
+		$queryargs = array ();
+
+		if ($id_tag)
+			$queryargs[] = "($archivecolumn[id_tag]='" . DataUtil :: formatForStore($id_tag) . "')";
+
+		if ($id_module)
+			$queryargs[] = "($archivecolumn[id_module]='" . DataUtil :: formatForStore($id_module) . "')";
+
+		if ($module)
+			$queryargs[] = "($archivecolumn[module]='" . DataUtil :: formatForStore($module) . "')";
+
+		if ($uid)
+			$queryargs[] = "($pntable[crptag_archive].$archivecolumn[cr_uid]='" . DataUtil :: formatForStore($uid) . "')";
+
+		$queryargs[] = "($archivecolumn[id_module] IS NOT NULL)";
+
+		$groupby = "$pntable[crptag_archive].$archivecolumn[id_tag], $pntable[crptag_archive].$archivecolumn[id_module], $pntable[crptag_archive].$archivecolumn[module]";
+		if ($groupbyname)
+			$groupby = "$pntable[crptag].$tagcolumn[name]";
+
+
+		$where = null;
+		if (count($queryargs) > 0)
+		{
+			$where = ' WHERE ' . implode(' AND ', $queryargs);
+		}
+
+		$sqlStatement = "SELECT $pntable[crptag_archive].$archivecolumn[id_tag] as id, " .
+		"$pntable[crptag].$tagcolumn[name] as name " .
+		"FROM $pntable[crptag] " .
+		"LEFT JOIN $pntable[crptag_archive] ON ($pntable[crptag].$tagcolumn[id]=$pntable[crptag_archive].$archivecolumn[id_tag]) " .
+		"$where " .
+		"GROUP BY $groupby ORDER BY $pntable[crptag_archive].$tagcolumn[lu_date] DESC";
+
+		// get the objects from the db
+		$res = DBUtil :: executeSQL($sqlStatement, $startnum -1, $numitems, true, true);
+
+		$objArray = DBUtil :: marshallObjects($res, array (
+			'id',
+			'name'
+		), true);
+
+		if ($alias)
+		{
+			foreach ($objArray as $kobj => $vobj)
+			{
+				$objArray[$kobj]['caption'] = $vobj['name'];
+				$objArray[$kobj]['value'] = $vobj['name'];
+				unset($objArray[$kobj]['name']);
+				unset($objArray[$kobj]['id']);
+			}
+		}
+
+		// Check for an error with the database code, and if so set an appropriate
+		// error message and return
+		if ($objArray === false)
+		{
+			return LogUtil :: registerError(_GETFAILED);
+		}
+
+		// Return the items
+		return $objArray;
 	}
 }
