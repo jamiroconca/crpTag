@@ -2,7 +2,7 @@
 /**
  * crpTag
  *
- * @copyright (c) 2007, Daniele Conca
+ * @copyright (c) 2008 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -50,7 +50,7 @@ function crpTag_user_modifytag($args = array ())
 	$modvars = pnModGetVar('crpTag');
 
 	$tag = new crpTag();
-	return $tag->ui->modifyItemTags($tagString, $modvars);
+	return $tag->ui->modifyItemTags($tagString, $modvars, $tagNameArray);
 }
 
 function crpTag_user_embedtag($args = array ())
