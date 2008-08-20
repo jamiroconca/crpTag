@@ -37,7 +37,7 @@ class crpTag
 		{
 			// clear initial and ending spaces
 			$vTag=trim($vTag);
-			
+
 			if ($idTag = $this->dao->existTag($vTag))
 				$creatingTag[] = $idTag;
 			elseif (!empty ($vTag) && strlen($vTag) >= pnModGetVar('crpTag', 'tag_minlength'))
@@ -82,7 +82,7 @@ class crpTag
 		{
 			// clear initial and ending spaces
 			$vTag=trim($vTag);
-			
+
 			if ($idTag = $this->dao->existTag($vTag))
 				$creatingTag[] = $idTag;
 			elseif (!empty ($vTag) && strlen($vTag) >= pnModGetVar('crpTag', 'tag_minlength'))
@@ -159,8 +159,9 @@ class crpTag
 		// Update module variables
 		$tag_itemsperpage = (int) FormUtil :: getPassedValue('tag_itemsperpage', 25, 'POST');
 		$tag_minlength = (int) FormUtil :: getPassedValue('tag_minlength', 4, 'POST');
-		$tag_purge = (int) FormUtil :: getPassedValue('tag_purge', 0, 'POST');
-		
+		$tag_use_ajax = (bool) FormUtil :: getPassedValue('tag_use_ajax', false, 'POST');
+		$tag_purge = (bool) FormUtil :: getPassedValue('tag_purge', false, 'POST');
+
 		if ($tag_itemsperpage < 1)
 			$tag_itemsperpage = 25;
 		if ($tag_minlength < 1)
@@ -168,10 +169,11 @@ class crpTag
 
 		pnModSetVar('crpTag', 'tag_itemsperpage', $tag_itemsperpage);
 		pnModSetVar('crpTag', 'tag_minlength', $tag_minlength);
-		
+		pnModSetVar('crpTag', 'tag_use_ajax', $tag_use_ajax);
+
 		if ($tag_purge)
 			$this->dao->tagPurge();
-		
+
 		// Let any other modules know that the modules configuration has been updated
 		pnModCallHooks('module', 'updateconfig', 'crpTag', array (
 			'module' => 'crpTag'
@@ -182,14 +184,14 @@ class crpTag
 
 		return pnRedirect(pnModURL('crpTag', 'admin', 'main'));
 	}
-	
+
 	/**
 	 * Map modules display functions
 	 */
 	function mapModuleMeta($tagmodule = null, $meta=null)
 	{
 		$metaArray = pnModAPIFunc($tagmodule, 'user', 'getmodulemeta');
-		return $metaArray[$meta];		
+		return $metaArray[$meta];
 	}
 
 }
