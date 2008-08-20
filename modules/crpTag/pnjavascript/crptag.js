@@ -68,5 +68,5 @@ function isNumeric(strString)//  check for valid numeric strings
 function update_tagfeed(){
 	tlist2.update();
 	$('crptag-demo').value=$F('crptag-demo')+','+$F('additional_input');
-	$('crptag-demo').focus();
+	Form.Element.focus('crptag-list');
 }
