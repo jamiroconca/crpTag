@@ -1,4 +1,6 @@
 crpTag
+v0.1.2 - 25 August 2008
+- added enable/disable use of tags presets
 v0.1.1 - 20 August 2008
 - added use ajax for input module var, through Proto!MultiSelect
 v0.1.0 - 11 August 2008
