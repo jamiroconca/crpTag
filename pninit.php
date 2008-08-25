@@ -30,12 +30,6 @@ function crpTag_init()
   if (!DBUtil :: createIndex('tag_archive', 'crptag_archive', array('id_tag','id_module', 'module'), array('UNIQUE' => '1')))
   	return false;
 
-
-	// Set default pages per page
-	pnModSetVar('crpTag', 'tag_itemsperpage', 25);
-	pnModSetVar('crpTag', 'tag_minlength', 4);
-	pnModSetVar('crpTag', 'tag_use_ajax', false);
-
 	// Set up module hooks for users
 	// embed on creation form
 	if (!pnModRegisterHook('item', 'new', 'GUI', 'crpTag', 'user', 'newtag'))
@@ -61,6 +55,13 @@ function crpTag_init()
 	if (!pnModRegisterHook('module', 'remove', 'API', 'crpTag', 'admin', 'removetag'))
 		return false;
 
+	// Set default pages per page
+	pnModSetVar('crpTag', 'tag_itemsperpage', 25);
+	pnModSetVar('crpTag', 'tag_minlength', 4);
+	pnModSetVar('crpTag', 'tag_use_ajax', false);
+	pnModSetVar('crpTag', 'tag_use_preset', false);
+	pnModSetVar('crpTag', 'tag_enabled_preset', null);
+
 	// Initialisation successful
 	return true;
 }
@@ -75,6 +76,11 @@ function crpTag_upgrade($oldversion)
 			return crpTag_upgrade("0.1.1");
 			break;
 		case "0.1.1" :
+			pnModSetVar('crpTag', 'tag_use_preset', false);
+			pnModSetVar('crpTag', 'tag_enabled_preset', null);
+			return crpTag_upgrade("0.1.2");
+			break;
+		case "0.1.2" :
 			break;
 	}
 	// Update successful
