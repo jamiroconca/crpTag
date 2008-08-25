@@ -160,6 +160,8 @@ class crpTag
 		$tag_itemsperpage = (int) FormUtil :: getPassedValue('tag_itemsperpage', 25, 'POST');
 		$tag_minlength = (int) FormUtil :: getPassedValue('tag_minlength', 4, 'POST');
 		$tag_use_ajax = (bool) FormUtil :: getPassedValue('tag_use_ajax', false, 'POST');
+		$tag_use_preset = (bool) FormUtil :: getPassedValue('tag_use_preset', false, 'POST');
+		$tag_enabled_preset = FormUtil :: getPassedValue('tag_enabled_preset', false, 'POST');
 		$tag_purge = (bool) FormUtil :: getPassedValue('tag_purge', false, 'POST');
 
 		if ($tag_itemsperpage < 1)
@@ -167,9 +169,27 @@ class crpTag
 		if ($tag_minlength < 1)
 			$tag_minlength = 4;
 
+		$tagArray = explode(',', $tag_enabled_preset);
+		$tagPresets = array();
+		foreach ($tagArray as $kTag => $vTag)
+		{
+			// clear initial and ending spaces
+			$vTag=trim($vTag);
+
+			if (empty ($vTag) || strlen($vTag) < pnModGetVar('crpTag', 'tag_minlength'))
+				unset($tagArray[$kTag]);
+			else
+				$tagPresets[]=$vTag;
+
+		}
+		$tagString = implode(',', $tagPresets);
+
 		pnModSetVar('crpTag', 'tag_itemsperpage', $tag_itemsperpage);
 		pnModSetVar('crpTag', 'tag_minlength', $tag_minlength);
 		pnModSetVar('crpTag', 'tag_use_ajax', $tag_use_ajax);
+		pnModSetVar('crpTag', 'tag_use_preset', $tag_use_preset);
+		pnModSetVar('crpTag', 'tag_enabled_preset', $tagString);
+		pnModSetVar('crpTag', 'tag_purge', $tag_purge);
 
 		if ($tag_purge)
 			$this->dao->tagPurge();

@@ -20,6 +20,9 @@
       <div id="crptag-auto">
         <div class="default"><!--[pnml name="_CRPTAG_TAGS_TIPYING_CHARS" html=1]--></div> 
         <ul id="tagfeed" class="feed">
+        	<!--[foreach item=tag from=$tagNameArray name=tagged]-->
+					<li value="<!--[$tag]-->"><!--[$tag]--></li>
+					<!--[/foreach]-->
         </ul>
       </div>
 	</div>

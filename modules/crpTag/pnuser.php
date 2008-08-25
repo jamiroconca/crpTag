@@ -20,9 +20,17 @@ function crpTag_user_newtag()
 	}
 
 	$modvars = pnModGetVar('crpTag');
+	$tagString = null;
+	$tagNameArray = array();
+
+	if ($modvars['tag_use_preset'] && !empty($modvars['tag_enabled_preset']))
+	{
+		$tagString = $modvars['tag_enabled_preset'];
+		$tagNameArray = explode(',',$modvars['tag_enabled_preset']);
+	}
 
 	$tag = new crpTag();
-	return $tag->ui->newItemTags($modvars);
+	return $tag->ui->newItemTags($tagString, $modvars, $tagNameArray);
 }
 
 function crpTag_user_modifytag($args = array ())
