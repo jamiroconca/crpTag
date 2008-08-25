@@ -20,4 +20,6 @@ define('_CRPTAG_TAGS_TIPYING_CHARS','Type some chars and already used tags will 
 define('_CRPTAG_GENERAL','General settings');
 define('_CRPTAG_MINLENGTH','Min. length(shorter tag will not be stored)');
 define('_CRPTAG_USE_AJAX','Use Ajax insert');
+define('_CRPTAG_USE_PRESET','Enable tag presets for new items');
+define('_CRPTAG_ENABLED_PRESET','Tag presets');
 define('_CRPTAG_PURGE_ARCHIVE','Purge unused tags from database');
