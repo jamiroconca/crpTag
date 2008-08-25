@@ -7,7 +7,17 @@
  * @license GNU/GPL - v.2.1
  * @package crpTag
  */
- 
+
+function crpTagConfigInit(tag_use_preset){
+	if (!tag_use_preset) {
+		$('crptag_enabled_preset').disabled = true;
+	}
+	
+	Event.observe('crptag_tag_use_preset', 'click', function(){
+		$('crptag_enabled_preset').disabled = !$('crptag_tag_use_preset').checked;
+	}, false);
+}
+
 function crpTagFormInit(){
 	// init
   tlist2 = new FacebookList('crptag-demo', 'crptag-auto');
