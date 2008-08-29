@@ -2,7 +2,7 @@
 /**
  * crpTag
  *
- * @copyright (c) 2007, Daniele Conca
+ * @copyright (c) 2008 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -81,6 +81,7 @@ function crpTag_moduletagsblock_display($blockinfo)
 	$pnRender->assign('tags', $items);
 	$pnRender->assign('smodule', $vars['moduletags']);
 	$pnRender->assign('modname', $moduleInfo['displayname']);
+	$pnRender->assign('showcounter', $vars['showcounter']);
 	$pnRender->assign($modvars);
 
 	$blockinfo['content'] = $pnRender->fetch('blocks/crptag_block_moduletags_cloud.htm');
@@ -125,6 +126,7 @@ function  crpTag_moduletagsblock_update($blockinfo)
 
 	// alter the corresponding variable
 	$vars['moduletags'] = FormUtil :: getPassedValue('moduletags', null);
+	$vars['showcounter'] = FormUtil :: getPassedValue('showcounter', null);
 
 	// write back the new contents
 	$blockinfo['content'] = pnBlockVarsToContent($vars);
