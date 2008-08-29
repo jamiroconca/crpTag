@@ -132,7 +132,8 @@ class crpTagDAO
 		$sqlStatement = "SELECT $pntable[crptag_archive].$archivecolumn[id_tag] as id, " .
 		"$pntable[crptag].$tagcolumn[name] as name, " .
 		"$pntable[crptag_archive].$archivecolumn[id_module] as id_module, " .
-		"$pntable[crptag_archive].$archivecolumn[module] as module " .
+		"$pntable[crptag_archive].$archivecolumn[module] as module, " .
+		"COUNT($pntable[crptag_archive].$archivecolumn[id_tag]) as tagcounter " .
 		"FROM $pntable[crptag] " .
 		"LEFT JOIN $pntable[crptag_archive] ON ($pntable[crptag].$tagcolumn[id]=$pntable[crptag_archive].$archivecolumn[id_tag]) " .
 		"$where " .
@@ -145,7 +146,8 @@ class crpTagDAO
 			'id',
 			'name',
 			'id_module',
-			'module'
+			'module',
+			'tagcounter'
 		), true);
 
 		// Check for an error with the database code, and if so set an appropriate
