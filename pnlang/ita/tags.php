@@ -10,3 +10,4 @@
  */
 
 define('_CRPTAG_TAGS','Elenco completo tags');
+define('_CRPTAG_SHOW_COUNTER','Show tag\'s counter');
