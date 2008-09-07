@@ -20,6 +20,7 @@ define('_CRPTAG_TAGS_TIPYING_CHARS','Scrivendo alcune lettere verranno presentat
 define('_CRPTAG_GENERAL','Impostazioni generali');
 define('_CRPTAG_MINLENGTH','Lunghezza minima(i tag brevi non verranno memorizzati)');
 define('_CRPTAG_USE_AJAX','Utilizza inserimenti Ajax');
+define('_CRPTAG_EDIT_INLINE','Modifica direttamente dalla pagina di visualizzazione');
 define('_CRPTAG_USE_PRESET','Abilita tags predefiniti per i nuovi elementi');
 define('_CRPTAG_ENABLED_PRESET','Tag predefiniti');
 define('_CRPTAG_PURGE_ARCHIVE','Elimina tags non utilizzati dal database');
