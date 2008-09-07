@@ -18,6 +18,12 @@ function crpTagConfigInit(tag_use_preset){
 	}, false);
 }
 
+function crpTagEmbedInit(){
+	Event.observe('switch_tagedit', 'click', function(){
+		$('crptag_enabled_edit').toggle();
+	}, false);
+}
+
 function crpTagFormInit(){
 	// init
   tlist2 = new FacebookList('crptag-demo', 'crptag-auto');
