@@ -333,4 +333,38 @@ class crpTagDAO
 		// Return the items
 		return $objArray;
 	}
+
+	/**
+	 * get a specific admin lite data
+	 *
+	 * @param int $eventid item identifier
+	 *
+	 * @return string item value
+	 */
+	function isAuthor($id_module = null, $module = null)
+	{
+		$pntable= pnDBGetTables();
+		$tagcolumn= $pntable['crptag_archive_column'];
+
+		$queryargs[]= "($tagcolumn[id_module] = '" . DataUtil :: formatForStore($id_module) . "' " .
+		" $tagcolumn[module] = '" . DataUtil :: formatForStore($module) . "' " .
+		"AND $crpcalendarcolumn[cr_uid] = '" . DataUtil :: formatForStore(pnUserGetVar('uid')) . "')";
+
+		$columnArray= array (
+			'cr_uid'
+		);
+
+		$where= null;
+		if (count($queryargs) > 0)
+		{
+			$where= ' WHERE ' . implode(' AND ', $queryargs);
+		}
+
+		$item= DBUtil :: selectObject('crptag', $where, $columnArray);
+
+		$author= false;
+		($item['cr_uid']) ? $author= true : $author= false;
+
+		return $author;
+	}
 }
