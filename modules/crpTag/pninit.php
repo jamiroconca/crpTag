@@ -61,6 +61,7 @@ function crpTag_init()
 	pnModSetVar('crpTag', 'tag_use_ajax', false);
 	pnModSetVar('crpTag', 'tag_use_preset', false);
 	pnModSetVar('crpTag', 'tag_enabled_preset', null);
+	pnModSetVar('crpTag', 'tag_edit_inline', null);
 
 	// Initialisation successful
 	return true;
@@ -81,6 +82,10 @@ function crpTag_upgrade($oldversion)
 			return crpTag_upgrade("0.1.2");
 			break;
 		case "0.1.2" :
+			pnModSetVar('crpTag', 'tag_edit_inline', null);
+			return crpTag_upgrade("0.1.3");
+			break;
+		case "0.1.3" :
 			break;
 	}
 	// Update successful
