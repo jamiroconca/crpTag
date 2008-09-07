@@ -160,6 +160,7 @@ class crpTag
 		$tag_itemsperpage = (int) FormUtil :: getPassedValue('tag_itemsperpage', 25, 'POST');
 		$tag_minlength = (int) FormUtil :: getPassedValue('tag_minlength', 4, 'POST');
 		$tag_use_ajax = (bool) FormUtil :: getPassedValue('tag_use_ajax', false, 'POST');
+		$tag_edit_inline = (bool) FormUtil :: getPassedValue('tag_edit_inline', false, 'POST');
 		$tag_use_preset = (bool) FormUtil :: getPassedValue('tag_use_preset', false, 'POST');
 		$tag_enabled_preset = FormUtil :: getPassedValue('tag_enabled_preset', false, 'POST');
 		$tag_purge = (bool) FormUtil :: getPassedValue('tag_purge', false, 'POST');
@@ -187,6 +188,7 @@ class crpTag
 		pnModSetVar('crpTag', 'tag_itemsperpage', $tag_itemsperpage);
 		pnModSetVar('crpTag', 'tag_minlength', $tag_minlength);
 		pnModSetVar('crpTag', 'tag_use_ajax', $tag_use_ajax);
+		pnModSetVar('crpTag', 'tag_edit_inline', $tag_edit_inline);
 		pnModSetVar('crpTag', 'tag_use_preset', $tag_use_preset);
 		pnModSetVar('crpTag', 'tag_enabled_preset', $tagString);
 		pnModSetVar('crpTag', 'tag_purge', $tag_purge);
@@ -203,6 +205,21 @@ class crpTag
 		LogUtil :: registerStatus(_CONFIGUPDATED);
 
 		return pnRedirect(pnModURL('crpTag', 'admin', 'main'));
+	}
+
+	/**
+	 * Return a condition about an event
+	 *
+	 * @param int $eventid identifier
+	 *
+	 * @return bool
+	 */
+	function isAuthor($id_module = null, $module = null)
+	{
+		$author = false;
+		$author = $this->dao->isAuthor($id_module, $module);
+
+		return $author;
 	}
 
 	/**
