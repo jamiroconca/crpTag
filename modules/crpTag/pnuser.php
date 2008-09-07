@@ -33,6 +33,35 @@ function crpTag_user_newtag()
 	return $tag->ui->newItemTags($tagString, $modvars, $tagNameArray);
 }
 
+/**
+ * update item
+ *
+ * @return string HTML output
+ */
+function crpTag_user_edittag()
+{
+	// Security check
+	if (!SecurityUtil::checkPermission('crpTag::', '::', ACCESS_COMMENT))
+	{
+		return LogUtil::registerPermissionError();
+	}
+
+	$tagmodule = FormUtil :: getPassedValue('tagmodule', null, 'POST');
+	$objectid = FormUtil :: getPassedValue('id_module', null, 'POST');
+	$taglist = FormUtil :: getPassedValue('taglist', null, 'POST');
+	$returnurl = FormUtil :: getPassedValue('returnurl', null, 'POST');
+
+	if (!$objectid || !$tagmodule)
+	{
+		LogUtil :: registerError(_MODARGSERROR);
+	}
+
+	$tag = new crpTag();
+	$tag->updateTag($objectid,array('module' => $tagmodule, 'returnurl' => $returnurl),$taglist);
+	pnRedirect($returnurl);
+	pnShutDown();
+}
+
 function crpTag_user_modifytag($args = array ())
 {
 	// Security check
@@ -80,8 +109,19 @@ function crpTag_user_embedtag($args = array ())
 		return;
 	else
 	{
+		foreach ($tagArray as $vTag)
+			$tagNameArray[] = $vTag['name'];
+
+		$tagString = implode(',', $tagNameArray);
+
 		$tag = new crpTag();
-		return $tag->ui->displayItemTags($tagArray, $modvars);
+		// edit, copy, delete
+		if ( $modvars['tag_edit_inline']
+				&& ( SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_EDIT) ||
+							(pnUserLoggedIn() && $tag->isAuthor($args['objectid'],$args['extrainfo']['module'])) ) )
+			$can_edit = true;
+
+		return $tag->ui->displayItemTags($tagArray, $tagString, $tagNameArray, $modvars, $args['extrainfo']['returnurl'], $can_edit);
 	}
 }
 
