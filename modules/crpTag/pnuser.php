@@ -105,8 +105,19 @@ function crpTag_user_embedtag($args = array ())
 		'extended' => false
 	));
 
+	$tag = new crpTag();
+
 	if (empty ($tagArray))
-		return;
+	{
+		// add tags
+		if ( $modvars['tag_edit_inline'] && SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_MODERATE))
+		{
+			$can_add = true;
+			return $tag->ui->displayAddItemTags($args['objectid'],$args['extrainfo']['module'],$modvars, $args['extrainfo']['returnurl'], $can_add);
+		}
+		else
+			return;
+	}
 	else
 	{
 		foreach ($tagArray as $vTag)
@@ -114,11 +125,8 @@ function crpTag_user_embedtag($args = array ())
 
 		$tagString = implode(',', $tagNameArray);
 
-		$tag = new crpTag();
 		// edit, copy, delete
-		if ( $modvars['tag_edit_inline']
-				&& ( SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_EDIT) ||
-							(pnUserLoggedIn() && $tag->isAuthor($args['objectid'],$args['extrainfo']['module'])) ) )
+		if ( $modvars['tag_edit_inline'] && SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_MODERATE))
 			$can_edit = true;
 
 		return $tag->ui->displayItemTags($tagArray, $tagString, $tagNameArray, $modvars, $args['extrainfo']['returnurl'], $can_edit);
