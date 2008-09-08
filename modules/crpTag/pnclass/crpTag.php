@@ -217,7 +217,9 @@ class crpTag
 	function isAuthor($id_module = null, $module = null)
 	{
 		$author = false;
-		$author = $this->dao->isAuthor($id_module, $module);
+
+		if (pnUserLoggedIn())
+			$author = $this->dao->isAuthor($id_module, $module);
 
 		return $author;
 	}
