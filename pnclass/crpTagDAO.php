@@ -347,8 +347,8 @@ class crpTagDAO
 		$tagcolumn= $pntable['crptag_archive_column'];
 
 		$queryargs[]= "($tagcolumn[id_module] = '" . DataUtil :: formatForStore($id_module) . "' " .
-		" $tagcolumn[module] = '" . DataUtil :: formatForStore($module) . "' " .
-		"AND $crpcalendarcolumn[cr_uid] = '" . DataUtil :: formatForStore(pnUserGetVar('uid')) . "')";
+		"AND $tagcolumn[module] = '" . DataUtil :: formatForStore($module) . "' " .
+		"AND $tagcolumn[cr_uid] = '" . DataUtil :: formatForStore(pnUserGetVar('uid')) . "')";
 
 		$columnArray= array (
 			'cr_uid'
@@ -360,7 +360,7 @@ class crpTagDAO
 			$where= ' WHERE ' . implode(' AND ', $queryargs);
 		}
 
-		$item= DBUtil :: selectObject('crptag', $where, $columnArray);
+		$item= DBUtil :: selectObject('crptag_archive', $where, $columnArray);
 
 		$author= false;
 		($item['cr_uid']) ? $author= true : $author= false;
