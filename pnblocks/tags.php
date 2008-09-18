@@ -63,13 +63,10 @@ function crpTag_tagsblock_display($blockinfo)
 	$apiargs['numitems'] = $modvars['tag_itemsperpage'];
 	$apiargs['extended'] = true;
 	$apiargs['groupbyname'] = true;
+	$apiargs['interval'] = $vars['interval'];
 
 	// call the api
 	$items = pnModAPIFunc('crpTag', 'user', 'gettags', $apiargs);
-
-	// check for an empty return
-	if (empty ($items))
-		return;
 
 	// create the output object
 	$pnRender = pnRender :: getInstance('crpTag', false);
@@ -77,6 +74,7 @@ function crpTag_tagsblock_display($blockinfo)
 	$pnRender->assign('tags', $items);
 	$pnRender->assign($modvars);
 	$pnRender->assign('showcounter', $vars['showcounter']);
+	$pnRender->assign('interval', $vars['interval']);
 
 	$blockinfo['content'] = $pnRender->fetch('blocks/crptag_block_tags_cloud.htm');
 
@@ -118,6 +116,7 @@ function  crpTag_tagsblock_update($blockinfo)
 
 	// alter the corresponding variable
 	$vars['showcounter'] = FormUtil :: getPassedValue('showcounter', null);
+	$vars['interval'] = FormUtil :: getPassedValue('interval', null);
 
 	// write back the new contents
 	$blockinfo['content'] = pnBlockVarsToContent($vars);
