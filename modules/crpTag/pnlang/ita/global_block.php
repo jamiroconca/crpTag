@@ -9,6 +9,7 @@
  * @package crpTag
  */
 
-Loader :: includeOnce('modules/crpTag/pnlang/ita/global_block.php');
-
-define('_CRPTAG_MODULE','Tag del modulo');
+define('_CRPTAG_TAGS','Elenco completo tags');
+define('_CRPTAG_SHOW_COUNTER','Visualizza contatore tag');
+define('_CRPTAG_INTERVAL','Aggiornati negli ultimi');
+define('_CRPTAGS_BLOCK_NO_TAGS','Nessun tag negli ultimi');
