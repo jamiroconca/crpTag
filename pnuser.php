@@ -76,7 +76,7 @@ function crpTag_user_modifytag($args = array ())
 
 	$tagArray = pnModAPIFunc('crpTag', 'user', 'gettags', array (
 		'id_module' => $args['objectid'],
-		'module' => $args['extrainfo']['module'],
+		'tagmodule' => $args['extrainfo']['module'],
 		'extended' => false
 	));
 	foreach ($tagArray as $vTag)
@@ -101,7 +101,7 @@ function crpTag_user_embedtag($args = array ())
 	$modvars = pnModGetVar('crpTag');
 	$tagArray = pnModAPIFunc('crpTag', 'user', 'gettags', array (
 		'id_module' => $args['objectid'],
-		'module' => $args['extrainfo']['module'],
+		'tagmodule' => $args['extrainfo']['module'],
 		'extended' => false
 	));
 
@@ -161,7 +161,7 @@ function crpTag_user_display($args)
 	$modvars = pnModGetVar('crpTag');
 	$tagArray = pnModAPIFunc('crpTag', 'user', 'gettags', array (
 		'id_tag' => $id_tag,
-		'module' => $tagmodule,
+		'tagmodule' => $tagmodule,
 		'extended' => true,
 		'startnum' => $startnum,
 		'numitems' => $modvars['tag_itemsperpage']
