@@ -93,5 +93,5 @@ function crpTag_userapi_getall_formlist($args=array())
 
 	$tag = new crpTag();
 	return $tag->dao->formList($args['id_tag'],$args['id_module'],$args['tagmodule'],$args['startnum'],
-																	$args['numitems'],$args['groupbyname'],$args['uid'],$args['interval'],$args['alias']);
+																	$args['numitems'],$args['groupbyname'],$args['uid'],$args['alias']);
 }
