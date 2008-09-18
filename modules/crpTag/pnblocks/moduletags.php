@@ -64,13 +64,10 @@ function crpTag_moduletagsblock_display($blockinfo)
 	$apiargs['extended'] = true;
 	$apiargs['groupbyname'] = true;
 	$apiargs['tagmodule'] = $vars['moduletags'];
+	$apiargs['interval'] = $vars['interval'];
 
 	// call the api
 	$items = pnModAPIFunc('crpTag', 'user', 'gettags', $apiargs);
-
-	// check for an empty return
-	if (empty ($items))
-		return;
 
 	$moduleId = pnModGetIDFromName($vars['moduletags']);
 	$moduleInfo = pnModGetInfo($moduleId);
@@ -82,6 +79,7 @@ function crpTag_moduletagsblock_display($blockinfo)
 	$pnRender->assign('smodule', $vars['moduletags']);
 	$pnRender->assign('modname', $moduleInfo['displayname']);
 	$pnRender->assign('showcounter', $vars['showcounter']);
+	$pnRender->assign('interval', $vars['interval']);
 	$pnRender->assign($modvars);
 
 	$blockinfo['content'] = $pnRender->fetch('blocks/crptag_block_moduletags_cloud.htm');
@@ -127,6 +125,7 @@ function  crpTag_moduletagsblock_update($blockinfo)
 	// alter the corresponding variable
 	$vars['moduletags'] = FormUtil :: getPassedValue('moduletags', null);
 	$vars['showcounter'] = FormUtil :: getPassedValue('showcounter', null);
+	$vars['interval'] = FormUtil :: getPassedValue('interval', null);
 
 	// write back the new contents
 	$blockinfo['content'] = pnBlockVarsToContent($vars);
