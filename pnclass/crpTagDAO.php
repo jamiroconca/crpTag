@@ -89,7 +89,7 @@ class crpTagDAO
 	 * Return list by parameters
 	 */
 	function getTags($id_tag = null, $id_module = null, $module = null, $extended = null, $startnum = 1, $numitems = null,
-										$groupbyname=null, $uid=null)
+										$groupbyname=null, $uid=null, $interval=null)
 	{
 		(empty ($startnum)) ? $startnum = 1 : '';
 		(empty ($numitems)) ? $numitems = pnModGetVar('crpTag', 'tag_itemsperpage') : '';
@@ -115,6 +115,12 @@ class crpTagDAO
 
 		if ($uid)
 			$queryargs[] = "($pntable[crptag_archive].$archivecolumn[cr_uid]='" . DataUtil :: formatForStore($uid) . "')";
+
+		if ($interval)
+		{
+			$queryargs[]= "(($pntable[crptag_archive].$archivecolumn[cr_date] < NOW() " .
+			"AND $pntable[crptag_archive].$archivecolumn[cr_date] > DATE_SUB(NOW(), INTERVAL " . DataUtil :: formatForStore($interval) . " DAY))) ";
+		}
 
 		$queryargs[] = "($archivecolumn[id_module] IS NOT NULL)";
 
