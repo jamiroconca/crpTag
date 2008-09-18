@@ -58,8 +58,8 @@ function crpTag_userapi_gettags($args=array())
 	}
 
 	$tag = new crpTag();
-	return $tag->dao->getTags($args['id_tag'],$args['id_module'],$args['module'],$args['extended'],$args['startnum'],
-														$args['numitems'],$args['groupbyname'],$args['uid']);
+	return $tag->dao->getTags($args['id_tag'],$args['id_module'],$args['tagmodule'],$args['extended'],$args['startnum'],
+														$args['numitems'],$args['groupbyname'],$args['uid'],$args['interval']);
 }
 
 /**
@@ -92,6 +92,6 @@ function crpTag_userapi_getall_formlist($args=array())
 	}
 
 	$tag = new crpTag();
-	return $tag->dao->formList($args['id_tag'],$args['id_module'],$args['module'],$args['startnum'],
-																	$args['numitems'],$args['groupbyname'],$args['uid'],$args['alias']);
+	return $tag->dao->formList($args['id_tag'],$args['id_module'],$args['tagmodule'],$args['startnum'],
+																	$args['numitems'],$args['groupbyname'],$args['uid'],$args['interval'],$args['alias']);
 }
