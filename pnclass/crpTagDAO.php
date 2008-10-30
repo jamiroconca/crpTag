@@ -65,7 +65,7 @@ class crpTagDAO
 
 		if ($id_tag)
 		{
-			$queryargs[] = "($tagcolumn[id]='" . DataUtil :: formatForStore($id_tag) . "')";
+			$queryargs[] = "($archivecolumn[id_tag]='" . DataUtil :: formatForStore($id_tag) . "')";
 		}
 		if ($id_module)
 		{
@@ -194,7 +194,7 @@ class crpTagDAO
 
 		if ($id_tag)
 		{
-			$queryargs[] = "($tagcolumn[id]='" . DataUtil :: formatForStore($id_tag) . "')";
+			$queryargs[] = "($archivecolumn[id_tag]='" . DataUtil :: formatForStore($id_tag) . "')";
 		}
 		if ($id_module)
 		{
