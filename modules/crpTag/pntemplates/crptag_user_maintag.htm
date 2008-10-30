@@ -28,7 +28,7 @@
 			<!--[pnusergetvar name=uname uid=$tag.item.cr_uid assign=cr_uname]-->
 			<!--[pnmodurl modname=Profile func=view uname=$cr_uname assign=cr_profilelink]-->
 			<a href="<!--[crptagbuildurl module=$tag.modname func=$tag.func mapid=$tag.mapid id_module=$tag.id_module]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.item.title]-->"><!--[$tag.item.title]--></a>
-			- <!--[pnml name=_CRPTAG_CREATEDON html=1]--> <!--[$tag.item.cr_date|date_format]--> <!--[pnml name=_BY]--> <a href="<!--[$cr_profilelink]-->"><!--[$cr_uname]--></a>
+			- <!--[pnml name=_CRPTAG_CREATEDON html=1]--> <!--[$tag.item.cr_date|pndate_format]--> <!--[pnml name=_BY]--> <a href="<!--[$cr_profilelink]-->"><!--[$cr_uname]--></a>
       	</td>
     
     </tr>
