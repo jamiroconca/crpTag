@@ -89,6 +89,8 @@ class crpTag
 			{
 				$idCreated = $this->dao->createTag(array (
 					'name' => trim($vTag),
+					'cr_date' => date('Y-m-d H:i:S'),
+					'cr_uid' => pnUserGetVar('uid'),
 					'lu_date' => date('Y-m-d H:i:S'),
 					'lu_uid' => pnUserGetVar('uid')
 				));
@@ -106,6 +108,8 @@ class crpTag
 				'id_tag' => $vIdTag,
 				'id_module' => $objectid,
 				'module' => $extrainfo['module'],
+				'cr_date' => date('Y-m-d H:i:S'),
+				'cr_uid' => pnUserGetVar('uid'),
 				'lu_date' => date('Y-m-d H:i:S'),
 				'lu_uid' => pnUserGetVar('uid')
 			));
