@@ -58,7 +58,7 @@ function crpTag_admin_modifyconfig()
 function crpTag_admin_updateconfig()
 {
   // Security check
-  if (!SecurityUtil::checkPermission('crpCalendar::', '::', ACCESS_EDIT)) {
+  if (!SecurityUtil::checkPermission('crpTag::', '::', ACCESS_EDIT)) {
       return LogUtil::registerPermissionError();
   }
 
