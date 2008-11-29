@@ -103,6 +103,7 @@ class crpTagDAO
 		$tagcolumn = $pntable['crptag_column'];
 		$archivecolumn = $pntable['crptag_archive_column'];
 		$queryargs = array ();
+		$nowDate = DateUtil::getDatetime();
 
 		if ($id_tag)
 			$queryargs[] = "($archivecolumn[id_tag]='" . DataUtil :: formatForStore($id_tag) . "')";
@@ -118,8 +119,10 @@ class crpTagDAO
 
 		if ($interval)
 		{
-			$queryargs[]= "(($pntable[crptag_archive].$archivecolumn[cr_date] < NOW() " .
-			"AND $pntable[crptag_archive].$archivecolumn[cr_date] > DATE_SUB(NOW(), INTERVAL " . DataUtil :: formatForStore($interval) . " DAY))) ";
+			$intervaltime = time() - $interval * 86400;
+			$intervalDate = DateUtil :: getDatetime($intervaltime);
+			$queryargs[]= "(($pntable[crptag_archive].$archivecolumn[cr_date] < '" . DataUtil :: formatForStore($nowDate) . "' " .
+			"AND $pntable[crptag_archive].$archivecolumn[cr_date] > '" . DataUtil :: formatForStore($intervalDate) . "')) ";
 		}
 
 		$queryargs[] = "($archivecolumn[id_module] IS NOT NULL)";

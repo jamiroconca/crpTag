@@ -3,7 +3,7 @@
 /**
  * crpTag
  *
- * @copyright (c) 2007, Daniele Conca
+ * @copyright (c) 2007,2008 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -27,7 +27,8 @@ function crpTag_pntables()
 	$pntable['crptag_column_def'] = array (
 		'id' => 'I(11) AUTOINCREMENT PRIMARY',
 		'name' => "C(255) NOTNULL DEFAULT ''",
-		
+
+
 	);
 
 	$pntable['crptag_archive'] = DBUtil :: getLimitedTablename('crptag_archive');
@@ -37,17 +38,17 @@ function crpTag_pntables()
 		'module' => 'module'
 	);
 	$pntable['crptag_archive_column_def'] = array (
-		'id_tag' => "I(11) NOTNULL DEFAULT '0'",
-		'id_module' => "I(11) NOTNULL DEFAULT '0'",
+		'id_tag' => "I(11) NOTNULL DEFAULT 0",
+		'id_module' => "I(11) NOTNULL DEFAULT 0",
 		'module' => "C(255) NOTNULL DEFAULT ''"
 	);
-	
+
 	// add standard data fields
-  ObjectUtil::addStandardFieldsToTableDefinition ($pntable['crptag_column'], '');
-  ObjectUtil::addStandardFieldsToTableDataDefinition($pntable['crptag_column_def']);
-  
-  ObjectUtil::addStandardFieldsToTableDefinition ($pntable['crptag_archive_column'], '');
-  ObjectUtil::addStandardFieldsToTableDataDefinition($pntable['crptag_archive_column_def']);
+	ObjectUtil :: addStandardFieldsToTableDefinition($pntable['crptag_column'], '');
+	ObjectUtil :: addStandardFieldsToTableDataDefinition($pntable['crptag_column_def']);
+
+	ObjectUtil :: addStandardFieldsToTableDefinition($pntable['crptag_archive_column'], '');
+	ObjectUtil :: addStandardFieldsToTableDataDefinition($pntable['crptag_archive_column_def']);
 
 	return $pntable;
 }
