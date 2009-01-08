@@ -1,6 +1,6 @@
 crpTag  
 ==============================================
-(C) Daniele Conca 2008
+(C) Daniele Conca 2008-2009
 
 PostNuke .8 - Zikula 1.0 (adam_baum) Credits
 ==============================================
