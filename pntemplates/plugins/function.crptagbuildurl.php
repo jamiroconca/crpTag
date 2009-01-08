@@ -2,7 +2,7 @@
 /**
  * crpTag
  *
- * @copyright (c) 2007, Daniele Conca
+ * @copyright (c) 2008-2009 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -14,7 +14,7 @@
  *
  * Example
  * <!--[crptagbuildurl module=$tag.module func=$tag.func mapid=$tag.mapid id_module=$tag.id_module]-->
- * 
+ *
  * @return string the results of the module function
  */
 function smarty_function_crptagbuildurl($params, & $smarty)
@@ -25,7 +25,7 @@ function smarty_function_crptagbuildurl($params, & $smarty)
 		return LogUtil :: registerPermissionError();
 	}
 
-	
+
 
 	return pnModURL($params['module'],
 					'user',
