@@ -8,6 +8,8 @@
  * @license GNU/GPL - v.2.1
  * @package crpTag
  */
+
 Loader :: includeOnce('modules/crpTag/pnlang/ita/global_block.php');
 
+define('_CRPTAG_TAGS_BYMODULE','Altri tag in %tagmodule%');
 define('_CRPTAG_MODULE','Tag del modulo');

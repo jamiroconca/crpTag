@@ -12,4 +12,4 @@
 define('_CRPTAG_SECTIONS', 'Tags');
 define('_CRPTAG_SEARCH', 'Sections Search');
 define('_CRPTAG_SEARCHRESULTS', 'tags found');
-define('_CRPTAG_SEACHNONEFOUND', 'No tags found');
+define('_CRPTAG_SEARCHNOONEFOUND', 'No tags found');
