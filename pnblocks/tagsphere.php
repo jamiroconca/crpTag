@@ -67,7 +67,7 @@ function crpTag_tagsphereblock_display($blockinfo)
 
 	// call the api
 	$items = pnModAPIFunc('crpTag', 'user', 'gettags', $apiargs);
-echo '<pre>'.print_r($items,1).'</pre>';
+
 	// create the output object
 	$pnRender = pnRender :: getInstance('crpTag', false);
 
