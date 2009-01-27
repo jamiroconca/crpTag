@@ -1,4 +1,6 @@
 crpTag
+v0.1.4 - ?? ?? 2009
+- new tag sphere block
 v0.1.3 - 08 January 2009
 - fixed use of mysql specific date functions
 - added time interval in blocks to show only tags used/added in the last (by admin defined) hours/days
