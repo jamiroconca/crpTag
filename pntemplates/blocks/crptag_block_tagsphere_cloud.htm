@@ -1,0 +1,29 @@
+<!--[ pnpageaddvar name="javascript" value="modules/crpTag/pnjavascript/swfobject.js" ]-->
+<div style="text-align:center;">
+<!--[if $interval]-->
+<h4><!--[pnml name=_CRPTAG_INTERVAL html=1]--> <!--[$interval]--> <!--[pnml name=_DAYS]--></h4>
+<!--[/if]-->
+<div>
+	<div id="tags">
+	<script type="text/javascript">
+		var rnumber = Math.floor(Math.random()*9999999);
+	  var widget_so = new SWFObject("modules/crpTag/pnincludes/tagcloud.swf?r="+rnumber, "cumulusflash", "<!--[$sphere_width]-->", "<!--[$sphere_height]-->", "9", "#FFFFFF");
+	  widget_so.addParam("wmode", "transparent");
+	  widget_so.addVariable("tcolor", "0xff0000");
+	  widget_so.addVariable("tcolor2", "0x333333");
+	  widget_so.addVariable("hicolor", "0x003366");
+	  widget_so.addVariable("tspeed", "100");
+	  widget_so.addVariable("distr", "true");
+	  widget_so.addVariable("mode", "tags");
+	  widget_so.addVariable("tagcloud", "<!--[$flashtags]-->");
+	  widget_so.write("tags");
+	</script>
+	</div>
+</div>
+<!--[if empty($tags)]-->
+<!--[pnml name=_CRPTAGS_BLOCK_NO_TAGS html=1]--> <!--[$interval]--> <!--[pnml name=_DAYS]-->
+<!--[/if]-->
+</div>
+<div class="pn-menu" style="text-align:center;">
+[&nbsp;<a href="<!--[pnmodurl modname="crpTag" type="user"]-->"><!--[pnml name="_CRPTAG_TAGS"]--></a>]
+</div>
