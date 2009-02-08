@@ -23,4 +23,5 @@ define('_CRPTAG_USE_AJAX','Utilizza inserimenti Ajax');
 define('_CRPTAG_EDIT_INLINE','Modifica direttamente dalla pagina di visualizzazione');
 define('_CRPTAG_USE_PRESET','Abilita tags predefiniti per i nuovi elementi');
 define('_CRPTAG_ENABLED_PRESET','Tag predefiniti');
+define('_CRPTAG_PAGETITLE','Aggiungi tag al titolo della pagina');
 define('_CRPTAG_PURGE_ARCHIVE','Elimina tags non utilizzati dal database');
