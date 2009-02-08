@@ -167,6 +167,7 @@ class crpTag
 		$tag_edit_inline = (bool) FormUtil :: getPassedValue('tag_edit_inline', false, 'POST');
 		$tag_use_preset = (bool) FormUtil :: getPassedValue('tag_use_preset', false, 'POST');
 		$tag_enabled_preset = FormUtil :: getPassedValue('tag_enabled_preset', false, 'POST');
+		$tag_pagetitle = (bool) FormUtil :: getPassedValue('tag_pagetitle', false, 'POST');
 		$tag_purge = (bool) FormUtil :: getPassedValue('tag_purge', false, 'POST');
 
 		if ($tag_itemsperpage < 1)
@@ -195,6 +196,7 @@ class crpTag
 		pnModSetVar('crpTag', 'tag_edit_inline', $tag_edit_inline);
 		pnModSetVar('crpTag', 'tag_use_preset', $tag_use_preset);
 		pnModSetVar('crpTag', 'tag_enabled_preset', $tagString);
+		pnModSetVar('crpTag', 'tag_pagetitle', $tag_pagetitle);
 		pnModSetVar('crpTag', 'tag_purge', $tag_purge);
 
 		if ($tag_purge)

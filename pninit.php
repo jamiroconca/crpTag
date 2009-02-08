@@ -62,6 +62,7 @@ function crpTag_init()
 	pnModSetVar('crpTag', 'tag_use_preset', false);
 	pnModSetVar('crpTag', 'tag_enabled_preset', null);
 	pnModSetVar('crpTag', 'tag_edit_inline', null);
+	pnModSetVar('crpTag', 'tag_pagetitle', null);
 
 	// Initialisation successful
 	return true;

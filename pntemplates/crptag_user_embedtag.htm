@@ -1,4 +1,14 @@
 <!--[pnajaxheader modname=crpTag filename=crptag.js noscriptaculous=true nobehaviour=true]-->
+
+<!--[if $tag_pagetitle]-->
+<!-- add tags to the title of a page -->
+<!--[foreach item=tag from=$tagArray name=tagged]-->
+<!--[assign var=tagsTitle value=$tagsTitle|cat:" :: "|cat:$tag.name]-->
+<!--[/foreach]-->
+<!--[pnpagegetvar name="title" assign="currentTitle"]-->
+<!--[pnpagesetvar name="title" value=$currentTitle|cat:$tagsTitle]-->
+<!--[/if]-->
+
 <!--[if pnModLangLoad('crpTag')]--><!-- lang load hack --><!--[/if]-->
 
 <h4><!--[pnml name="_CRPTAG_TAGS" html=1]--></h4>

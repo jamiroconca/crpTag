@@ -23,4 +23,5 @@ define('_CRPTAG_USE_AJAX','Use Ajax insert');
 define('_CRPTAG_EDIT_INLINE','Edit directly from item\'s display page');
 define('_CRPTAG_USE_PRESET','Enable tag presets for new items');
 define('_CRPTAG_ENABLED_PRESET','Tag presets');
+define('_CRPTAG_PAGETITLE','Add tags to page title');
 define('_CRPTAG_PURGE_ARCHIVE','Purge unused tags from database');
