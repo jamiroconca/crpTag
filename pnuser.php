@@ -224,7 +224,38 @@ function crpTag_user_main()
 		));
 		if (SecurityUtil :: checkPermission("$vtag[module]::", "::", ACCESS_READ))
 		{
-			$tagArray[$ktag]['item'] = $item;
+			switch ($vtag['module'])
+			{
+				case "News":
+					$fromstamp = ($item['from'])?DateUtil :: makeTimestamp($item['from']):null;
+					$tostamp = ($item['to'])?DateUtil :: makeTimestamp($item['to']):null;
+					if ( ((!$fromstamp && !$tostamp)
+								|| ($fromstamp && !$tostamp && $fromstamp<time())
+								|| ($tostamp && !$fromstamp && $tostamp>time())
+								|| ($fromstamp && $tostamp && $fromstamp<time() && $tostamp>time())
+								)
+							&& ($item['published_status'] == '0'))
+						$tagArray[$ktag]['item'] = $item;
+					else
+						unset($tagArray[$ktag]);
+					break;
+				case "crpCalendar":
+				case "crpVideo":
+				case "Pages":
+				case "Ephemerids":
+				case "FAQ":
+				case "locations":
+				case "Feeds":
+				case "Reviews":
+					if ( $item['obj_status'] == 'A')
+						$tagArray[$ktag]['item'] = $item;
+					else
+						unset($tagArray[$ktag]);
+					break;
+				default:
+					$tagArray[$ktag]['item'] = $item;
+					break;
+			}
 		}
 	}
 
