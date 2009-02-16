@@ -67,7 +67,7 @@ class crpTag
 			));
 		}
 
-		return true;
+		return $extrainfo;
 	}
 
 	/**
@@ -115,7 +115,7 @@ class crpTag
 			));
 		}
 
-		return true;
+		return $extrainfo;
 	}
 
 	/**
@@ -126,7 +126,7 @@ class crpTag
 		// clean from old values
 		$this->dao->cleanArchive(null, $objectid, $extrainfo['module']);
 
-		return true;
+		return $extrainfo;
 	}
 
 	/**
@@ -137,7 +137,7 @@ class crpTag
 		// clean from old values
 		$this->dao->cleanArchive(null, null, $extrainfo['module']);
 
-		return true;
+		return $extrainfo;
 	}
 
 	/**
