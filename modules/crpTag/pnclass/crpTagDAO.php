@@ -88,8 +88,7 @@ class crpTagDAO
 	/**
 	 * Return list by parameters
 	 */
-	function getTags($id_tag = null, $id_module = null, $module = null, $extended = null, $startnum = 1, $numitems = null,
-										$groupbyname=null, $uid=null, $interval=null)
+	function getTags($id_tag = null, $id_module = null, $module = null, $extended = null, $startnum = 1, $numitems = null, $groupbyname = null, $uid = null, $interval = null)
 	{
 		(empty ($startnum)) ? $startnum = 1 : '';
 		(empty ($numitems)) ? $numitems = pnModGetVar('crpTag', 'tag_itemsperpage') : '';
@@ -103,7 +102,7 @@ class crpTagDAO
 		$tagcolumn = $pntable['crptag_column'];
 		$archivecolumn = $pntable['crptag_archive_column'];
 		$queryargs = array ();
-		$nowDate = DateUtil::getDatetime();
+		$nowDate = DateUtil :: getDatetime();
 
 		if ($id_tag)
 			$queryargs[] = "($archivecolumn[id_tag]='" . DataUtil :: formatForStore($id_tag) . "')";
@@ -121,7 +120,7 @@ class crpTagDAO
 		{
 			$intervaltime = time() - $interval * 86400;
 			$intervalDate = DateUtil :: getDatetime($intervaltime);
-			$queryargs[]= "(($pntable[crptag_archive].$archivecolumn[cr_date] < '" . DataUtil :: formatForStore($nowDate) . "' " .
+			$queryargs[] = "(($pntable[crptag_archive].$archivecolumn[cr_date] < '" . DataUtil :: formatForStore($nowDate) . "' " .
 			"AND $pntable[crptag_archive].$archivecolumn[cr_date] > '" . DataUtil :: formatForStore($intervalDate) . "')) ";
 		}
 
@@ -130,7 +129,6 @@ class crpTagDAO
 		$groupby = "$pntable[crptag_archive].$archivecolumn[id_tag], $pntable[crptag_archive].$archivecolumn[id_module], $pntable[crptag_archive].$archivecolumn[module]";
 		if ($groupbyname)
 			$groupby = "$pntable[crptag].$tagcolumn[name]";
-
 
 		$where = null;
 		if (count($queryargs) > 0)
@@ -170,8 +168,8 @@ class crpTagDAO
 		{
 			if ($extended)
 			{
-				$objArray[$kobj]['func'] = crpTag ::mapModuleMeta($vobj['module'],'displayfunc');
-				$objArray[$kobj]['mapid'] = crpTag ::mapModuleMeta($vobj['module'],'itemid');
+				$objArray[$kobj]['func'] = crpTag :: mapModuleMeta($vobj['module'], 'displayfunc');
+				$objArray[$kobj]['mapid'] = crpTag :: mapModuleMeta($vobj['module'], 'itemid');
 				$moduleId = pnModGetIDFromName($vobj['module']);
 				$moduleInfo = pnModGetInfo($moduleId);
 				$objArray[$kobj]['modname'] = $moduleInfo['displayname'];
@@ -222,10 +220,8 @@ class crpTagDAO
 
 		if ($id_tag)
 			return DBUtil :: selectObjectCountByID('crptag_archive', $id_tag, 'id_tag');
-		elseif
-			($module) return DBUtil :: selectObjectCountByID('crptag_archive', $module, 'module');
-		elseif
-			($uid) return DBUtil :: selectObjectCountByID('crptag_archive', $uid, 'cr_uid');
+		elseif ($module) return DBUtil :: selectObjectCountByID('crptag_archive', $module, 'module');
+		elseif ($uid) return DBUtil :: selectObjectCountByID('crptag_archive', $uid, 'cr_uid');
 		else
 			return DBUtil :: selectObjectCount('crptag_archive', $where, 'id_tag');
 
@@ -234,13 +230,13 @@ class crpTagDAO
 	/**
 	 * Calculate tag average value
 	 */
-	function tagAVG($id_tag=null)
+	function tagAVG($id_tag = null)
 	{
 		// start counter from zero
-		$tag_counter = DBUtil :: selectObjectCountByID('crptag_archive', $id_tag, 'id_tag')-1;
+		$tag_counter = DBUtil :: selectObjectCountByID('crptag_archive', $id_tag, 'id_tag') - 1;
 		$tot_counter = DBUtil :: selectObjectCount('crptag_archive');
 
-		$tag_avg = ($tag_counter * 100 ) / $tot_counter;
+		$tag_avg = ($tag_counter * 100) / $tot_counter;
 
 		return $tag_avg;
 	}
@@ -255,9 +251,9 @@ class crpTagDAO
 		$archivecolumn = $pntable['crptag_archive_column'];
 
 		$sqlStatement = "DELETE $pntable[crptag]
-			FROM $pntable[crptag]
-			LEFT JOIN $pntable[crptag_archive] ON ($tagcolumn[id] = $archivecolumn[id_tag])
-			WHERE $archivecolumn[id_tag] IS NULL";
+					FROM $pntable[crptag]
+					LEFT JOIN $pntable[crptag_archive] ON ($tagcolumn[id] = $archivecolumn[id_tag])
+					WHERE $archivecolumn[id_tag] IS NULL";
 
 		return DBUtil :: executeSQL($sqlStatement);
 	}
@@ -265,8 +261,7 @@ class crpTagDAO
 	/**
 	 * Return list by parameters
 	 */
-	function formList($id_tag = null, $id_module = null, $module = null, $startnum = 1, $numitems = null,
-										$groupbyname=null, $uid=null, $alias=null)
+	function formList($id_tag = null, $id_module = null, $module = null, $startnum = 1, $numitems = null, $groupbyname = null, $uid = null, $alias = null)
 	{
 		(empty ($startnum)) ? $startnum = 1 : '';
 		(empty ($numitems)) ? $numitems = pnModGetVar('crpTag', 'tag_itemsperpage') : '';
@@ -293,12 +288,12 @@ class crpTagDAO
 		if ($uid)
 			$queryargs[] = "($pntable[crptag_archive].$archivecolumn[cr_uid]='" . DataUtil :: formatForStore($uid) . "')";
 
-		$queryargs[] = "($archivecolumn[id_module] IS NOT NULL)";
+		if ($id_tag || $id_module || $module || $uid)
+			$queryargs[] = "($archivecolumn[id_module] IS NOT NULL)";
 
 		$groupby = "$pntable[crptag_archive].$archivecolumn[id_tag], $pntable[crptag_archive].$archivecolumn[id_module], $pntable[crptag_archive].$archivecolumn[module]";
 		if ($groupbyname)
 			$groupby = "$pntable[crptag].$tagcolumn[name]";
-
 
 		$where = null;
 		if (count($queryargs) > 0)
@@ -306,12 +301,17 @@ class crpTagDAO
 			$where = ' WHERE ' . implode(' AND ', $queryargs);
 		}
 
-		$sqlStatement = "SELECT $pntable[crptag_archive].$archivecolumn[id_tag] as id, " .
+		$sqlStatement = "SELECT $pntable[crptag].$tagcolumn[id] as id, " .
 		"$pntable[crptag].$tagcolumn[name] as name " .
-		"FROM $pntable[crptag] " .
-		"LEFT JOIN $pntable[crptag_archive] ON ($pntable[crptag].$tagcolumn[id]=$pntable[crptag_archive].$archivecolumn[id_tag]) " .
-		"$where " .
-		"GROUP BY $groupby ORDER BY $pntable[crptag_archive].$tagcolumn[lu_date] DESC";
+		"FROM $pntable[crptag] ";
+		// join if necessary
+		if ($id_tag || $id_module || $module || $uid)
+		{
+			$sqlStatement .= "LEFT JOIN $pntable[crptag_archive] ON ($pntable[crptag].$tagcolumn[id]=$pntable[crptag_archive].$archivecolumn[id_tag]) " .
+												"$where " .
+												"GROUP BY $groupby ";
+		}
+		$sqlStatement .= "ORDER BY $pntable[crptag].$tagcolumn[name]";
 
 		// get the objects from the db
 		$res = DBUtil :: executeSQL($sqlStatement, $startnum -1, $numitems, true, true);
@@ -327,8 +327,8 @@ class crpTagDAO
 			{
 				$objArray[$kobj]['caption'] = $vobj['name'];
 				$objArray[$kobj]['value'] = $vobj['name'];
-				unset($objArray[$kobj]['name']);
-				unset($objArray[$kobj]['id']);
+				unset ($objArray[$kobj]['name']);
+				unset ($objArray[$kobj]['id']);
 			}
 		}
 
@@ -352,27 +352,27 @@ class crpTagDAO
 	 */
 	function isAuthor($id_module = null, $module = null)
 	{
-		$pntable= pnDBGetTables();
-		$tagcolumn= $pntable['crptag_archive_column'];
+		$pntable = pnDBGetTables();
+		$tagcolumn = $pntable['crptag_archive_column'];
 
-		$queryargs[]= "($tagcolumn[id_module] = '" . DataUtil :: formatForStore($id_module) . "' " .
+		$queryargs[] = "($tagcolumn[id_module] = '" . DataUtil :: formatForStore($id_module) . "' " .
 		"AND $tagcolumn[module] = '" . DataUtil :: formatForStore($module) . "' " .
 		"AND $tagcolumn[cr_uid] = '" . DataUtil :: formatForStore(pnUserGetVar('uid')) . "')";
 
-		$columnArray= array (
+		$columnArray = array (
 			'cr_uid'
 		);
 
-		$where= null;
+		$where = null;
 		if (count($queryargs) > 0)
 		{
-			$where= ' WHERE ' . implode(' AND ', $queryargs);
+			$where = ' WHERE ' . implode(' AND ', $queryargs);
 		}
 
-		$item= DBUtil :: selectObject('crptag_archive', $where, $columnArray);
+		$item = DBUtil :: selectObject('crptag_archive', $where, $columnArray);
 
-		$author= false;
-		($item['cr_uid']) ? $author= true : $author= false;
+		$author = false;
+		($item['cr_uid']) ? $author = true : $author = false;
 
 		return $author;
 	}
