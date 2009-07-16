@@ -140,11 +140,12 @@ class crpTagDAO
 		"$pntable[crptag].$tagcolumn[name] as name, " .
 		"$pntable[crptag_archive].$archivecolumn[id_module] as id_module, " .
 		"$pntable[crptag_archive].$archivecolumn[module] as module, " .
-		"COUNT($pntable[crptag_archive].$archivecolumn[id_tag]) as tagcounter " .
+		"COUNT($pntable[crptag_archive].$archivecolumn[id_tag]) as tagcounter, " .
+		"MAX($pntable[crptag_archive].$archivecolumn[lu_date]) as lu_date " .
 		"FROM $pntable[crptag] " .
 		"LEFT JOIN $pntable[crptag_archive] ON ($pntable[crptag].$tagcolumn[id]=$pntable[crptag_archive].$archivecolumn[id_tag]) " .
 		"$where " .
-		"GROUP BY $groupby ORDER BY $pntable[crptag_archive].$tagcolumn[lu_date] DESC";
+		"GROUP BY $groupby ORDER BY lu_date DESC";
 
 		// get the objects from the db
 		$res = DBUtil :: executeSQL($sqlStatement, $startnum -1, $numitems, true, true);
