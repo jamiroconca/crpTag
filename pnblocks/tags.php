@@ -57,7 +57,7 @@ function crpTag_tagsblock_display($blockinfo)
 	// Break out options from our content field
 	$vars = pnBlockVarsFromContent($blockinfo['content']);
 	// get all module vars for later use
-	$modvars = pnModGetVar('crpVideo');
+	$modvars = pnModGetVar('crpTag');
 
 	$apiargs['startnum'] = 1;
 	$apiargs['numitems'] = $modvars['tag_itemsperpage'];
