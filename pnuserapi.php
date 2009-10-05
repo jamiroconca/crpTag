@@ -16,7 +16,8 @@ function crpTag_userapi_createtag($args=array())
 	// Security check
 	if (!SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_COMMENT))
 	{
-		return LogUtil :: registerPermissionError();
+    // no permission but the module can continue his process
+		return false;
 	}
 
 	if (!$args['objectid'] || !$args['extrainfo']['module'])
@@ -35,7 +36,8 @@ function crpTag_userapi_updatetag($args=array())
 	// Security check
 	if (!SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_COMMENT))
 	{
-		return LogUtil :: registerPermissionError();
+		// no permission but the module can continue his process
+		return false;
 	}
 
 	if (!$args['objectid'] || !$args['extrainfo']['module'])
