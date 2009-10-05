@@ -39,7 +39,7 @@ function crpTag_pntables()
 	);
 	$pntable['crptag_archive_column_def'] = array (
 		'id_tag' => "I(11) NOTNULL DEFAULT 0",
-		'id_module' => "I(11) NOTNULL DEFAULT 0",
+		'id_module' => "C(25) NOTNULL DEFAULT 0",
 		'module' => "C(255) NOTNULL DEFAULT ''"
 	);
 

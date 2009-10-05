@@ -12,7 +12,7 @@
 $modversion['name'] = _CRPTAG_NAME;
 $modversion['displayname'] = _CRPTAG_DISPLAYNAME;
 $modversion['description'] = _CRPTAG_DESCRIPTION;
-$modversion['version'] = '0.1.3';
+$modversion['version'] = '0.1.4';
 $modversion['credits'] = 'pndocs/credits.txt';
 $modversion['help'] = 'pndocs/install.txt';
 $modversion['changelog'] = 'pndocs/changelog.txt';
