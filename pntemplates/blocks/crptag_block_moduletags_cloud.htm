@@ -4,7 +4,7 @@
 <!--[/if]-->
 <!--[foreach from=$tags item=tag]-->
 <span style="font-size:<!--[math equation="100+5*x" x=$tag.avg format="%.0f"]-->%;<!--[if ($tag.avg > 2)]-->font-weight:bold;<!--[/if]-->">
-	<a href="<!--[pnmodurl modname="crpTag" type="user" func="display" id=$tag.id]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.name|pnvarprephtmldisplay]-->"><!--[$tag.name|pnvarprephtmldisplay]--></a>
+	<a href="<!--[pnmodurl modname="crpTag" type="user" func="display" id=$tag.id|pnvarprepfordisplay]-->" title="<!--[pnml name=_VIEW html=1]--> <!--[$tag.name|pnvarprephtmldisplay]-->"><!--[$tag.name|pnvarprephtmldisplay]--></a>
 </span><!--[if $showcounter]--><span class="pn-sub">(<!--[$tag.tagcounter]-->)</span><!--[/if]-->
 <!--[/foreach]-->
 <!--[if empty($tags)]-->
@@ -12,5 +12,5 @@
 <!--[/if]-->
 </div>
 <div class="pn-menu" style="text-align:center;">
-[&nbsp;<a href="<!--[pnmodurl modname="crpTag" type="user" func="display" tagmodule=$smodule]-->"><!--[pnml name="_CRPTAG_TAGS_BYMODULE" tagmodule=$modname]--></a>]
+[&nbsp;<a href="<!--[pnmodurl modname="crpTag" type="user" func="display" tagmodule=$smodule|pnvarprepfordisplay]-->"><!--[pnml name="_CRPTAG_TAGS_BYMODULE" tagmodule=$modname]--></a>]
 </div>
