@@ -87,7 +87,14 @@ function crpTag_upgrade($oldversion)
 			return crpTag_upgrade("0.1.3");
 			break;
 		case "0.1.3" :
+      $sql = "ALTER TABLE $tables[crptag_archive] CHANGE `id_module` `id_module` VARCHAR( 25 ) NOT NULL DEFAULT '0'";
+      if (!DBUtil :: executeSQL($sql))
+				return LogUtil :: registerError(_UPDATETABLEFAILED);
+        
+      return crpTag_upgrade("0.1.4");
 			break;
+    case "0.1.4" :
+      break;
 	}
 	// Update successful
 	return true;
