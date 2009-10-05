@@ -16,7 +16,8 @@ function crpTag_user_newtag()
 	// Security check
 	if (!SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_COMMENT))
 	{
-		return LogUtil :: registerPermissionError();
+    // no permission but the module can continue his process
+		return false;
 	}
 
 	$modvars = pnModGetVar('crpTag');
@@ -43,7 +44,8 @@ function crpTag_user_edittag()
 	// Security check
 	if (!SecurityUtil::checkPermission('crpTag::', '::', ACCESS_COMMENT))
 	{
-		return LogUtil::registerPermissionError();
+    // no permission but the module can continue his process
+		return false;
 	}
 
 	$tagmodule = FormUtil :: getPassedValue('tagmodule', null, 'POST');
@@ -67,7 +69,8 @@ function crpTag_user_modifytag($args = array ())
 	// Security check
 	if (!SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_COMMENT))
 	{
-		return LogUtil :: registerPermissionError();
+		// no permission but the module can continue his process
+		return false;
 	}
 	if (!$args['objectid'] || !$args['extrainfo']['module'])
 	{
