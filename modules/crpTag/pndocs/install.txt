@@ -1,0 +1,14 @@
+INSTALL:
+- requirements are at least postnuke 0.8 or Zikula 1.0.x
+- for a correct result, hooked modules should have the right Hooks calls (new, create, modify, update, etc) in the right place
+- hooked modules should have getmodulemeta() function in pnuserapi.php
+- for a better result, hooked modules should have a function get() in in pnuserapi.php, which should return an array of values for a given id (eg. News_userapi_get, Pages_userapi_get, etc)
+- ATTENTION: the use of the tagsphere block is proved to crash IE7 when lightbox is used in the same page
+
+UPGRADE:
+- standard upgrade procedure
+
+UNINSTALL:
+- default module uninstallation procedure (remember: removing an hooked module will remove his archive of tags, removing crpTag will remove every archive) 
+
+

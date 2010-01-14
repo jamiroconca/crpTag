@@ -1,0 +1,23 @@
+crpTag
+v0.1.4 - ?? ?? 2009
+- new tag sphere block
+- possibility to add tags to page title
+v0.1.3 - 08 January 2009
+- fixed use of mysql specific date functions
+- added time interval in blocks to show only tags used/added in the last (by admin defined) hours/days
+- added enable/disable use edit directly from item's tagged display page
+v0.1.2 - 25 August 2008
+- added enable/disable use of tags presets
+- added option to show counter in blocks
+v0.1.1 - 20 August 2008
+- added use ajax for input module var, through Proto!MultiSelect
+v0.1.0 - 11 August 2008
+- config: purge unused tags, when an item have his tags changed it could be that any other item use the one which have been deleted, so better remove them on a regular basis
+- block with module tag cloud
+- block with global tag cloud
+- list of tags by module
+- list of item with the same tag
+- list of global tags
+- tag for News, Reviews, Pages, crpCalendar, crpVideo, FAQ and everything have getmodulemeta and get pnuserapi functions
+- config: itemsperpage and minimum tag length for storing
+- Initial version
