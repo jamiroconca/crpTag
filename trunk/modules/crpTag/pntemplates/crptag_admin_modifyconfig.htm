@@ -1,0 +1,58 @@
+<!--[pnajaxheader modname=crpTag filename=crptag.js noscriptaculous=true nobehaviour=true]-->
+
+<!--[include file="crptag_admin_menu.htm"]-->
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><!--[pnimg modname=core src=configure.gif set=icons/large alt='_MODIFYCONFIG' altml=true]--></div>
+<h2><!--[pnml name="_MODIFYCONFIG" html=1]--></h2>
+<form class="pn-adminform" action="<!--[pnmodurl modname="crpTag" type="admin" func="updateconfig"]-->" method="post" enctype="application/x-www-form-urlencoded">
+<div>
+	<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="crpTag"]-->" />
+	<fieldset>
+		<legend><!--[pnml name=_CRPTAG_GENERAL html=1]--></legend>
+		<div class="pn-adminformrow">
+			<label for="crptag_itemsperpage"><!--[pnml name="_ITEMSPERPAGE" html=1]--></label>
+			<input id="crptag_itemsperpage" type="text" name="tag_itemsperpage" size="3" value="<!--[$tag_itemsperpage|pnvarprepfordisplay]-->" />
+		</div>
+		<div class="pn-adminformrow">
+			<label for="crptag_tag_minlength"><!--[pnml name="_CRPTAG_MINLENGTH" html=1]--></label>
+			<input id="crptag_tag_minlength" type="text" name="tag_minlength" size="3" value="<!--[$tag_minlength|pnvarprepfordisplay]-->" />
+		</div>
+		<div class="pn-adminformrow">
+			<label for="crptag_use_ajax"><!--[pnml name="_CRPTAG_USE_AJAX" html=1]--></label>
+			<input id="crptag_use_ajax" type="checkbox" name="tag_use_ajax" <!--[if $tag_use_ajax]--> checked="checked"<!--[/if]-->/>
+		</div>
+		<div class="pn-adminformrow">
+			<label for="crptag_edit_inline"><!--[pnml name="_CRPTAG_EDIT_INLINE" html=1]--></label>
+			<input id="crptag_edit_inline" type="checkbox" name="tag_edit_inline" <!--[if $tag_edit_inline]--> checked="checked"<!--[/if]-->/>
+		</div>
+		<div class="pn-adminformrow">
+			<label for="crptag_tag_use_preset"><!--[pnml name="_CRPTAG_USE_PRESET" html=1]--></label>
+			<input id="crptag_tag_use_preset" type="checkbox" name="tag_use_preset" <!--[if $tag_use_preset]--> checked="checked"<!--[/if]-->/>
+		</div>
+		<div class="pn-adminformrow">
+			<label for="crptag_enabled_preset"><!--[pnml name="_CRPTAG_ENABLED_PRESET" html=1]--></label>
+			<input id="crptag_enabled_preset" type="text" name="tag_enabled_preset" size="48" value="<!--[$tag_enabled_preset|pnvarprepfordisplay]-->" />
+			<span class="pn-sub"><!--[pnml name="_CRPTAG_TAGS_INSERT" html=1]--></span>
+		</div>
+		<div class="pn-adminformrow">
+			<label for="crptag_pagetitle"><!--[pnml name="_CRPTAG_PAGETITLE" html=1]--></label>
+			<input id="crptag_pagetitle" type="checkbox" name="tag_pagetitle" <!--[if $tag_pagetitle]--> checked="checked"<!--[/if]-->/>
+		</div>
+		<div class="pn-adminformrow">
+			<label for="crptag_tag_purge"><!--[pnml name="_CRPTAG_PURGE_ARCHIVE" html=1]--></label>
+			<input id="crptag_tag_purge" type="checkbox" name="tag_purge" />
+		</div>		
+	</fieldset>
+    <!--[pnmodcallhooks hookobject=module hookaction=modifyconfig module=crpTag]-->
+    <div class="pn-adminformrow pn-adminformbuttons">
+    <a href="<!--[pnmodurl modname=crpTag type=admin func=main]-->"><!--[pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"]--></a>
+    <!--[pnbutton src=button_ok.gif set=icons/small alt="_UPDATECONFIG" title="_UPDATECONFIG"]-->
+    </div>
+</div>
+</form>
+
+<script type="text/javascript">
+	Event.observe(window, 'load', function(){crpTagConfigInit('<!--[$tag_use_preset]-->');}, false);
+</script>
+
+</div>
