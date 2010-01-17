@@ -6,15 +6,15 @@
 	<!--[elseif pnUserGetVar('_YOURAVATAR',$uid) neq '']-->
 	<img class="photo" src="images/avatar/<!--[pnusergetvar name=_YOURAVATAR uid=$uid]-->" alt="Avatar" />
 	<!--[else]-->
-	<!--[pnimg modname='crpTag'  src="blank.jpg" class="photo" __alt='crpTagNoAVATARSELECTED']-->
+	<!--[pnimg modname="crpTag"  src="blank.jpg" class="photo" __alt="No avatar selected"]-->
 	<!--[/if]-->
 	<br />
 	<span class="fn n"><strong class="nickname"><!--[pnusergetvar name=uname uid=$uid]--></strong></span><br />
 	<span class="adr">
 	 	<!--[if pnUserGetVar('_YLOCATION',$uid)]--><span class="locality"><!--[pnusergetvar name=_YLOCATION uid=$uid]--></span><br /><!--[/if]-->
 	</span>
-	<!--[if pnUserGetVar('_UFAKEMAIL',$uid)]--><!--[gt text="_UFAKEMAIL"]-->: <a class="email" href="mailto:<!--[pnusergetvar name=_UFAKEMAIL uid=$uid]-->"><!--[pnusergetvar name=_UFAKEMAIL uid=$uid]--></a><br /><!--[/if]-->
-	<!--[if pnUserGetVar('_YOURHOMEPAGE',$uid)]--><!--[gt text="_YOURHOMEPAGE"]-->: <a class="url" href="<!--[pnusergetvar name=_YOURHOMEPAGE uid=$uid]-->"><!--[pnusergetvar name=_YOURHOMEPAGE uid=$uid]--></a><br /><!--[/if]-->
+	<!--[if pnUserGetVar('_UFAKEMAIL',$uid)]--><!--[gt text="E-mail"]-->: <a class="email" href="mailto:<!--[pnusergetvar name=_UFAKEMAIL uid=$uid]-->"><!--[pnusergetvar name=_UFAKEMAIL uid=$uid]--></a><br /><!--[/if]-->
+	<!--[if pnUserGetVar('_YOURHOMEPAGE',$uid)]--><!--[gt text="Homepage"]-->: <a class="url" href="<!--[pnusergetvar name=_YOURHOMEPAGE uid=$uid]-->"><!--[pnusergetvar name=_YOURHOMEPAGE uid=$uid]--></a><br /><!--[/if]-->
 </div>
 
 <table class="z-datatable">

@@ -1,0 +1,271 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Zikula 1.2.x\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-01-17 19:32+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: pninit.php:103
+msgid "Error! Table update failed."
+msgstr ""
+
+#: pnadminapi.php:25 pnadminapi.php:44 pnclass/crpTagDAO.php:98
+#: pnclass/crpTagDAO.php:272 pnuser.php:60 pnuser.php:83 pnuserapi.php:27
+#: pnuserapi.php:48
+msgid "Error! Could not do what you wanted. Please check your input."
+msgstr ""
+
+#: pnclass/crpTag.php:213
+msgid "Done! Module configuration updated."
+msgstr ""
+
+#: pnclass/crpTagDAO.php:44
+msgid "Error! Creation attempt failed."
+msgstr ""
+
+#: pnclass/crpTagDAO.php:165 pnclass/crpTagDAO.php:340 pnsearchapi.php:77
+#: pnsearchapi.php:99
+msgid "Error! Could not load items."
+msgstr ""
+
+#: pnajax.php:23
+msgid "Sorry! No authorization to access this module."
+msgstr ""
+
+#: pnaccountapi.php:47
+msgid "My tags"
+msgstr ""
+
+#: pnblocks/tagsphere.php:93 pntemplates/crptag_user_viewminetag.htm:39
+#: pntemplates/crptag_user_viewminetag.htm:43
+#: pntemplates/crptag_user_viewminetag.htm:49
+#: pntemplates/crptag_user_maintag.htm:20
+#: pntemplates/crptag_user_maintag.htm:24
+#: pntemplates/crptag_user_maintag.htm:30
+#: pntemplates/crptag_user_viewtag.htm:23
+#: pntemplates/crptag_user_viewtag.htm:27
+#: pntemplates/crptag_user_viewtag.htm:33
+#: pntemplates/blocks/crptag_block_moduletags_cloud.htm:7
+#: pntemplates/blocks/crptag_block_tags_cloud.htm:7
+msgid "View"
+msgstr ""
+
+#: pnversion.php:14 pnversion.php:15 pntemplates/crptag_user_menu.htm:4
+#: pntemplates/crptag_admin_menu.htm:3
+msgid "crpTag"
+msgstr ""
+
+#: pnversion.php:16
+msgid "Tagging module"
+msgstr ""
+
+#: pntemplates/crptag_user_viewminetag.htm:9
+msgid "No avatar selected"
+msgstr ""
+
+#: pntemplates/crptag_user_viewminetag.htm:16
+msgid "E-mail"
+msgstr ""
+
+#: pntemplates/crptag_user_viewminetag.htm:17
+msgid "Homepage"
+msgstr ""
+
+#: pntemplates/crptag_user_viewminetag.htm:25
+#: pntemplates/crptag_user_menu.htm:6 pntemplates/crptag_user_maintag.htm:5
+#: pntemplates/hooks/crptag_admin_modifytag.htm:2
+#: pntemplates/hooks/crptag_admin_modifytag.htm:13
+#: pntemplates/hooks/crptag_user_newtag.htm:2
+#: pntemplates/hooks/crptag_user_newtag.htm:13
+#: pntemplates/hooks/crptag_admin_newtag.htm:2
+#: pntemplates/hooks/crptag_admin_newtag.htm:13
+#: pntemplates/crptag_user_viewtag.htm:9 pntemplates/crptag_user_addtag.htm:3
+#: pntemplates/crptag_user_addtag.htm:17 pntemplates/crptag_user_addtag.htm:27
+#: pntemplates/blocks/crptag_block_tagsphere_cloud.htm:28
+#: pntemplates/blocks/crptag_block_tags_cloud.htm:15
+#: pntemplates/crptag_user_embedtag.htm:12
+#: pntemplates/crptag_user_embedtag.htm:29
+#: pntemplates/crptag_user_embedtag.htm:39
+msgid "Full tags list"
+msgstr ""
+
+#: pntemplates/crptag_user_viewminetag.htm:25
+#: pntemplates/crptag_user_viewtag.htm:9
+msgid "for"
+msgstr ""
+
+#: pntemplates/crptag_user_viewminetag.htm:29
+#: pntemplates/crptag_user_maintag.htm:10
+#: pntemplates/crptag_user_viewtag.htm:13
+msgid "Module"
+msgstr ""
+
+#: pntemplates/crptag_user_viewminetag.htm:30
+#: pntemplates/crptag_user_maintag.htm:11
+#: pntemplates/crptag_user_viewtag.htm:14
+msgid "Tag"
+msgstr ""
+
+#: pntemplates/crptag_user_viewminetag.htm:31
+#: pntemplates/crptag_user_maintag.htm:12
+#: pntemplates/crptag_user_viewtag.htm:15
+msgid "Title"
+msgstr ""
+
+#: pntemplates/crptag_user_viewminetag.htm:50
+#: pntemplates/crptag_user_maintag.htm:31
+#: pntemplates/crptag_user_viewtag.htm:34
+msgid "Created on"
+msgstr ""
+
+#: pntemplates/crptag_user_viewminetag.htm:50
+#: pntemplates/crptag_user_maintag.htm:31
+#: pntemplates/crptag_user_viewtag.htm:34
+msgid "by"
+msgstr ""
+
+#: pntemplates/hooks/crptag_admin_modifytag.htm:4
+#: pntemplates/hooks/crptag_admin_modifytag.htm:16
+#: pntemplates/hooks/crptag_user_newtag.htm:4
+#: pntemplates/hooks/crptag_user_newtag.htm:16
+#: pntemplates/hooks/crptag_admin_newtag.htm:4
+#: pntemplates/hooks/crptag_admin_newtag.htm:16
+#: pntemplates/crptag_admin_modifyconfig.htm:35
+#: pntemplates/crptag_user_addtag.htm:19 pntemplates/crptag_user_addtag.htm:30
+#: pntemplates/crptag_user_embedtag.htm:31
+#: pntemplates/crptag_user_embedtag.htm:42
+msgid "Tags (comma separated)"
+msgstr ""
+
+#: pntemplates/hooks/crptag_admin_modifytag.htm:19
+#: pntemplates/hooks/crptag_user_newtag.htm:19
+#: pntemplates/hooks/crptag_admin_newtag.htm:19
+#: pntemplates/crptag_user_addtag.htm:33
+#: pntemplates/crptag_user_embedtag.htm:45
+msgid "Type some chars and already used tags will be suggested"
+msgstr ""
+
+#: pntemplates/crptag_admin_modifyconfig.htm:5
+#: pntemplates/crptag_admin_modifyconfig.htm:6
+msgid "Settings"
+msgstr ""
+
+#: pntemplates/crptag_admin_modifyconfig.htm:11
+msgid "General settings"
+msgstr ""
+
+#: pntemplates/crptag_admin_modifyconfig.htm:13
+msgid "Items per page"
+msgstr ""
+
+#: pntemplates/crptag_admin_modifyconfig.htm:17
+msgid "Min. length(shorter tag will not be stored)"
+msgstr ""
+
+#: pntemplates/crptag_admin_modifyconfig.htm:21
+msgid "Use Ajax insert"
+msgstr ""
+
+#: pntemplates/crptag_admin_modifyconfig.htm:25
+msgid "Edit directly from item's display page"
+msgstr ""
+
+#: pntemplates/crptag_admin_modifyconfig.htm:29
+msgid "Enable tag presets for new items"
+msgstr ""
+
+#: pntemplates/crptag_admin_modifyconfig.htm:33
+msgid "Tag presets"
+msgstr ""
+
+#: pntemplates/crptag_admin_modifyconfig.htm:38
+msgid "Add tags to page title"
+msgstr ""
+
+#: pntemplates/crptag_admin_modifyconfig.htm:42
+msgid "Purge unused tags from database"
+msgstr ""
+
+#: pntemplates/crptag_admin_modifyconfig.htm:48
+msgid "Cancel"
+msgstr ""
+
+#: pntemplates/crptag_admin_modifyconfig.htm:49
+#: pntemplates/crptag_user_addtag.htm:48
+#: pntemplates/crptag_user_embedtag.htm:60
+msgid "Update Configuration"
+msgstr ""
+
+#: pntemplates/crptag_user_addtag.htm:5
+#: pntemplates/crptag_user_embedtag.htm:14
+msgid "Edit"
+msgstr ""
+
+#: pntemplates/blocks/crptag_block_moduletags_cloud_modify.htm:2
+msgid "Tags in"
+msgstr ""
+
+#: pntemplates/blocks/crptag_block_moduletags_cloud_modify.htm:11
+#: pntemplates/blocks/crptag_block_tagsphere_cloud_modify.htm:2
+#: pntemplates/blocks/crptag_block_tags_cloud_modify.htm:2
+msgid "Show tag's counter"
+msgstr ""
+
+#: pntemplates/blocks/crptag_block_moduletags_cloud_modify.htm:16
+#: pntemplates/blocks/crptag_block_tagsphere_cloud_modify.htm:7
+#: pntemplates/blocks/crptag_block_moduletags_cloud.htm:3
+#: pntemplates/blocks/crptag_block_tags_cloud_modify.htm:7
+#: pntemplates/blocks/crptag_block_tagsphere_cloud.htm:4
+#: pntemplates/blocks/crptag_block_tags_cloud.htm:3
+msgid "Updated in the last"
+msgstr ""
+
+#: pntemplates/blocks/crptag_block_moduletags_cloud_modify.htm:18
+#: pntemplates/blocks/crptag_block_tagsphere_cloud_modify.htm:9
+#: pntemplates/blocks/crptag_block_moduletags_cloud.htm:3
+#: pntemplates/blocks/crptag_block_moduletags_cloud.htm:11
+#: pntemplates/blocks/crptag_block_tags_cloud_modify.htm:9
+#: pntemplates/blocks/crptag_block_tagsphere_cloud.htm:4
+#: pntemplates/blocks/crptag_block_tagsphere_cloud.htm:24
+#: pntemplates/blocks/crptag_block_tags_cloud.htm:3
+#: pntemplates/blocks/crptag_block_tags_cloud.htm:11
+msgid "days"
+msgstr ""
+
+#: pntemplates/blocks/crptag_block_tagsphere_cloud_modify.htm:13
+msgid "Sphere width"
+msgstr ""
+
+#: pntemplates/blocks/crptag_block_tagsphere_cloud_modify.htm:18
+msgid "Sphere height"
+msgstr ""
+
+#: pntemplates/blocks/crptag_block_moduletags_cloud.htm:11
+#: pntemplates/blocks/crptag_block_tagsphere_cloud.htm:24
+#: pntemplates/blocks/crptag_block_tags_cloud.htm:11
+msgid "No tags in the last"
+msgstr ""
+
+#: pntemplates/blocks/crptag_block_moduletags_cloud.htm:15
+#, php-format
+msgid "Other tags in %s"
+msgstr ""
+
+#: pntemplates/crptag_search_options.htm:3
+msgid "Tags"
+msgstr ""
+
+#: pntemplates/crptag_user_embedtag.htm:16
+msgid "Other items tagged as"
+msgstr ""
