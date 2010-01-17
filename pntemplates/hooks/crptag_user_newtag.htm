@@ -1,10 +1,8 @@
-<!--[if pnModLangLoad('crpTag')]--><!-- lang load hack --><!--[/if]-->
-
 <!--[if !$tag_use_ajax]-->
-<h4><!--[pnml name="_CRPTAG_TAGS" html=1]--></h4>
-<div class="pn-formrow">
-  	<label for="taglist"><!--[pnml name="_CRPTAG_TAGS_INSERT" html=1]--></label>
-	<input id="taglist" class="pn-form-text" type="text" name="taglist" maxlength="128" size="48" value="" />
+<h4><!--[gt text="Full tags list" domain="crpTag"]--></h4>
+<div class="z-formrow">
+  	<label for="taglist"><!--[gt text="Tags (comma separated)" domain="crpTag"]--></label>
+	<input id="taglist" class="z-form-text" type="text" name="taglist" maxlength="128" size="48" value="" />
 </div>
 <!--[else]-->
 <!--[pnajaxheader modname="crpTag" filename=crptag.js nobehaviour=true]-->
@@ -12,13 +10,13 @@
 <!--[pnpageaddvar name="javascript" value="modules/crpTag/pnjavascript/taglist.js"]-->
 <!--[pnpageaddvar name="stylesheet" value="modules/crpTag/pnstyle/taglist.css"]-->
 
-<h4><!--[pnml name="_CRPTAG_TAGS" html=1]--></h4>
-<div id="crptag-container" class="pn-formrow">
+<h4><!--[gt text="Full tags list" domain="crpTag"]--></h4>
+<div id="crptag-container" class="z-formrow">
 	<div id="crptag-list" class="input-text">
-      <label for="crptag-demo"><!--[pnml name="_CRPTAG_TAGS_INSERT" html=1]--></label>
+      <label for="crptag-demo"><!--[gt text="Tags (comma separated)" domain="crpTag"]--></label>
       <input id="crptag-demo" type="text" name="taglist" value="" />
       <div id="crptag-auto">
-        <div class="default"><!--[pnml name="_CRPTAG_TAGS_TIPYING_CHARS" html=1]--></div> 
+        <div class="default"><!--[gt text="Type some chars and already used tags will be suggested" domain="crpTag"]--></div> 
         <ul id="tagfeed" class="feed">
         </ul>
       </div>

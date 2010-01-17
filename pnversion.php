@@ -2,16 +2,18 @@
 /**
  * crpTag
  *
- * @copyright (c) 2008-2009 Daniele Conca
+ * @copyright (c) 2008-2010 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
  * @package crpTag
  */
 
-$modversion['name'] = _CRPTAG_NAME;
-$modversion['displayname'] = _CRPTAG_DISPLAYNAME;
-$modversion['description'] = _CRPTAG_DESCRIPTION;
+$dom = ZLanguage::getModuleDomain('crpTag');
+
+$modversion['name'] = __('crpTag', $dom);
+$modversion['displayname'] = __('crpTag', $dom);
+$modversion['description'] = __('Tagging module', $dom);
 $modversion['version'] = '0.1.4';
 $modversion['credits'] = 'pndocs/credits.txt';
 $modversion['help'] = 'pndocs/install.txt';

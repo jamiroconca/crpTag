@@ -1,37 +1,36 @@
 <!--[pnajaxheader modname=crpTag filename=crptag.js noscriptaculous=true nobehaviour=true]-->
-<!--[if pnModLangLoad('crpTag')]--><!-- lang load hack --><!--[/if]-->
 
-<h4><!--[pnml name="_CRPTAG_TAGS" html=1]--></h4>
+<h4><!--[gt text="Full tags list"]--></h4>
 <div style="white-space:normal;">
-<!--[if $can_add]--><!--[pnimg modname=core src=xedit.gif set=icons/extrasmall id="switch_tagedit" altml=true titleml=true alt="_EDIT" title="_EDIT"]--><!--[/if]-->
+<!--[if $can_add]--><!--[pnimg modname='core' src='xedit.gif' set='icons/extrasmall' id="switch_tagedit"   __alt="Edit" __title="Edit"]--><!--[/if]-->
 </div>
 
 <!--[if $can_add]-->
 <div id="crptag_enabled_edit" style="display:none;">
-<form class="pn-form" action="<!--[pnmodurl modname="crpTag" type="user" func="edittag"]-->" method="post" enctype="application/x-www-form-urlencoded">
+<form class="z-form" action="<!--[pnmodurl modname="crpTag" type="user" func="edittag"]-->" method="post" enctype="application/x-www-form-urlencoded">
 <input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="crpTag"]-->" />
 <input type="hidden" name="returnurl" value="<!--[$returnurl]-->" />
 <input type="hidden" name="tagmodule" value="<!--[$tagmodule]-->" />
 <input type="hidden" name="id_module" value="<!--[$id_module]-->" />
 
 <!--[if !$tag_use_ajax]-->
-<h3><!--[pnml name="_CRPTAG_TAGS" html=1]--></h3>
-<div class="pn-formrow">
-  <label for="taglist"><!--[pnml name="_CRPTAG_TAGS_INSERT" html=1]--></label>
-	<input id="taglist" class="pn-form-text" type="text" name="taglist" maxlength="128" size="48" value="<!--[$tagString]-->" />
+<h3><!--[gt text="Full tags list"]--></h3>
+<div class="z-formrow">
+  <label for="taglist"><!--[gt text="Tags (comma separated)"]--></label>
+	<input id="taglist" class="z-form-text" type="text" name="taglist" maxlength="128" size="48" value="<!--[$tagString]-->" />
 </div>
 <!--[else]-->
 <!--[pnajaxheader modname="crpTag" filename=crptag.js nobehaviour=true]-->
 <!--[pnpageaddvar name="javascript" value="modules/crpTag/pnjavascript/textboxlist.js"]-->
 <!--[pnpageaddvar name="stylesheet" value="modules/crpTag/pnstyle/taglist.css"]-->
 
-<h3><!--[pnml name="_CRPTAG_TAGS" html=1]--></h3>
-<div id="crptag-container" class="pn-formrow">
+<h3><!--[gt text="Full tags list"]--></h3>
+<div id="crptag-container" class="z-formrow">
 	<div id="crptag-list" class="input-text">
-      <label for="crptag-demo"><!--[pnml name="_CRPTAG_TAGS_INSERT" html=1]--></label>
+      <label for="crptag-demo"><!--[gt text="Tags (comma separated)"]--></label>
       <input id="crptag-demo" type="text" name="taglist" value="" />
       <div id="crptag-auto">
-        <div class="default"><!--[pnml name="_CRPTAG_TAGS_TIPYING_CHARS" html=1]--></div> 
+        <div class="default"><!--[gt text="Type some chars and already used tags will be suggested"]--></div> 
         <ul id="tagfeed" class="feed">
         	<!--[foreach item=tag from=$tagNameArray name=tagged]-->
 					<li value="<!--[$tag]-->"><!--[$tag]--></li>
@@ -45,8 +44,8 @@
 	Event.observe(window, 'load', function(){crpTagFormInit();}, false);
 </script>
 <!--[/if]-->
-		<div class="pn-formrow pn-formbuttons">
-    	<!--[pnbutton src=button_ok.gif set=icons/small alt="_UPDATECONFIG" title="_UPDATECONFIG"]-->
+		<div class="z-formrow z-formbuttons">
+    	<!--[pnbutton src='button_ok.gif' set='icons/small' __alt="Update Configuration" __title="Update Configuration"]-->
     </div>
 </form>
 

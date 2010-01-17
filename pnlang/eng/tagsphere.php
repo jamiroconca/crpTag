@@ -9,7 +9,7 @@
  * @package crpTag
  */
 
-Loader :: includeOnce('modules/crpTag/pnlang/eng/global_block.php');
+//Loader :: includeOnce('modules/crpTag/pnlang/eng/global_block.php');
 
 define('_CRPTAG_SPHERE_WIDTH','Sphere width');
 define('_CRPTAG_SPHERE_HEIGHT','Sphere height');
