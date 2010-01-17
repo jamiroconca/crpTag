@@ -3,7 +3,7 @@
 /**
  * crpTag
  *
- * @copyright (c) 2008-2009 Daniele Conca
+ * @copyright (c) 2008-2010 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -23,6 +23,8 @@ class crpTag
 	{
 		$this->ui = new crpTagUI();
 		$this->dao = new crpTagDAO();
+
+		$this->dom = ZLanguage::getModuleDomain('crpTag');
 	}
 
 	/**
@@ -36,7 +38,7 @@ class crpTag
 		foreach ($tagArray as $kTag => $vTag)
 		{
 			// clear initial and ending spaces
-			$vTag=trim($vTag);
+			$vTag = trim($vTag);
 
 			if ($idTag = $this->dao->existTag($vTag))
 				$creatingTag[] = $idTag;
@@ -81,7 +83,7 @@ class crpTag
 		foreach ($tagArray as $kTag => $vTag)
 		{
 			// clear initial and ending spaces
-			$vTag=trim($vTag);
+			$vTag = trim($vTag);
 
 			if ($idTag = $this->dao->existTag($vTag))
 				$creatingTag[] = $idTag;
@@ -176,16 +178,16 @@ class crpTag
 			$tag_minlength = 4;
 
 		$tagArray = explode(',', $tag_enabled_preset);
-		$tagPresets = array();
+		$tagPresets = array ();
 		foreach ($tagArray as $kTag => $vTag)
 		{
 			// clear initial and ending spaces
-			$vTag=trim($vTag);
+			$vTag = trim($vTag);
 
 			if (empty ($vTag) || strlen($vTag) < pnModGetVar('crpTag', 'tag_minlength'))
-				unset($tagArray[$kTag]);
+				unset ($tagArray[$kTag]);
 			else
-				$tagPresets[]=$vTag;
+				$tagPresets[] = $vTag;
 
 		}
 		$tagString = implode(',', $tagPresets);
@@ -208,7 +210,7 @@ class crpTag
 		));
 
 		// the module configuration has been updated successfuly
-		LogUtil :: registerStatus(_CONFIGUPDATED);
+		LogUtil :: registerStatus(__('Done! Module configuration updated.', $this->dom));
 
 		return pnRedirect(pnModURL('crpTag', 'admin', 'main'));
 	}
@@ -233,7 +235,7 @@ class crpTag
 	/**
 	 * Map modules display functions
 	 */
-	function mapModuleMeta($tagmodule = null, $meta=null)
+	function mapModuleMeta($tagmodule = null, $meta = null)
 	{
 		$metaArray = pnModAPIFunc($tagmodule, 'user', 'getmodulemeta');
 		return $metaArray[$meta];

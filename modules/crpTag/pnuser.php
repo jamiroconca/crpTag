@@ -1,8 +1,9 @@
 <?php
+
 /**
  * crpTag
  *
- * @copyright (c) 2008-2009 Daniele Conca
+ * @copyright (c) 2008-2010 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -16,18 +17,18 @@ function crpTag_user_newtag()
 	// Security check
 	if (!SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_COMMENT))
 	{
-    // no permission but the module can continue his process
+		// no permission but the module can continue his process
 		return false;
 	}
 
 	$modvars = pnModGetVar('crpTag');
 	$tagString = null;
-	$tagNameArray = array();
+	$tagNameArray = array ();
 
-	if ($modvars['tag_use_preset'] && !empty($modvars['tag_enabled_preset']))
+	if ($modvars['tag_use_preset'] && !empty ($modvars['tag_enabled_preset']))
 	{
 		$tagString = $modvars['tag_enabled_preset'];
-		$tagNameArray = explode(',',$modvars['tag_enabled_preset']);
+		$tagNameArray = explode(',', $modvars['tag_enabled_preset']);
 	}
 
 	$tag = new crpTag();
@@ -42,9 +43,9 @@ function crpTag_user_newtag()
 function crpTag_user_edittag()
 {
 	// Security check
-	if (!SecurityUtil::checkPermission('crpTag::', '::', ACCESS_COMMENT))
+	if (!SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_COMMENT))
 	{
-    // no permission but the module can continue his process
+		// no permission but the module can continue his process
 		return false;
 	}
 
@@ -55,11 +56,15 @@ function crpTag_user_edittag()
 
 	if (!$objectid || !$tagmodule)
 	{
-		LogUtil :: registerError(_MODARGSERROR);
+		$dom = ZLanguage::getModuleDomain('crpTag');
+		LogUtil :: registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
 	}
 
 	$tag = new crpTag();
-	$tag->updateTag($objectid,array('module' => $tagmodule, 'returnurl' => $returnurl),$taglist);
+	$tag->updateTag($objectid, array (
+		'module' => $tagmodule,
+		'returnurl' => $returnurl
+	), $taglist);
 	pnRedirect($returnurl);
 	pnShutDown();
 }
@@ -74,7 +79,8 @@ function crpTag_user_modifytag($args = array ())
 	}
 	if (!$args['objectid'] || !$args['extrainfo']['module'])
 	{
-		LogUtil :: registerError(_MODARGSERROR);
+		$dom = ZLanguage::getModuleDomain('crpTag');
+		LogUtil :: registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
 	}
 
 	$tagArray = pnModAPIFunc('crpTag', 'user', 'gettags', array (
@@ -113,10 +119,10 @@ function crpTag_user_embedtag($args = array ())
 	if (empty ($tagArray))
 	{
 		// add tags
-		if ( $modvars['tag_edit_inline'] && SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_MODERATE))
+		if ($modvars['tag_edit_inline'] && SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_MODERATE))
 		{
 			$can_add = true;
-			return $tag->ui->displayAddItemTags($args['objectid'],$args['extrainfo']['module'],$modvars, $args['extrainfo']['returnurl'], $can_add);
+			return $tag->ui->displayAddItemTags($args['objectid'], $args['extrainfo']['module'], $modvars, $args['extrainfo']['returnurl'], $can_add);
 		}
 		else
 			return;
@@ -129,7 +135,7 @@ function crpTag_user_embedtag($args = array ())
 		$tagString = implode(',', $tagNameArray);
 
 		// edit, copy, delete
-		if ( $modvars['tag_edit_inline'] && SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_MODERATE))
+		if ($modvars['tag_edit_inline'] && SecurityUtil :: checkPermission('crpTag::', '::', ACCESS_MODERATE))
 			$can_edit = true;
 
 		return $tag->ui->displayItemTags($tagArray, $tagString, $tagNameArray, $modvars, $args['extrainfo']['returnurl'], $can_edit);
@@ -182,14 +188,12 @@ function crpTag_user_display($args)
 	}
 
 	$pager = array (
-		'numitems' => pnModAPIFunc('crpTag',
-		'user',
-		'countitems',
-		array (
+		'numitems' => pnModAPIFunc('crpTag', 'user', 'countitems', array (
 			'id_tag' => $id_tag,
 			'tagmodule' => $tagmodule
-		)
-	), 'itemsperpage' => $modvars['tag_itemsperpage']);
+		)),
+		'itemsperpage' => $modvars['tag_itemsperpage']
+	);
 
 	$tag = new crpTag();
 	return $tag->ui->displayTaggedItems($tagArray, $modvars, $pager, $id_tag, $tagmodule);
@@ -229,33 +233,28 @@ function crpTag_user_main()
 		{
 			switch ($vtag['module'])
 			{
-				case "News":
-					$fromstamp = ($item['from'])?DateUtil :: makeTimestamp($item['from']):null;
-					$tostamp = ($item['to'])?DateUtil :: makeTimestamp($item['to']):null;
-					if ( ((!$fromstamp && !$tostamp)
-								|| ($fromstamp && !$tostamp && $fromstamp<time())
-								|| ($tostamp && !$fromstamp && $tostamp>time())
-								|| ($fromstamp && $tostamp && $fromstamp<time() && $tostamp>time())
-								)
-							&& ($item['published_status'] == '0'))
+				case "News" :
+					$fromstamp = ($item['from']) ? DateUtil :: makeTimestamp($item['from']) : null;
+					$tostamp = ($item['to']) ? DateUtil :: makeTimestamp($item['to']) : null;
+					if (((!$fromstamp && !$tostamp) || ($fromstamp && !$tostamp && $fromstamp < time()) || ($tostamp && !$fromstamp && $tostamp > time()) || ($fromstamp && $tostamp && $fromstamp < time() && $tostamp > time())) && ($item['published_status'] == '0'))
 						$tagArray[$ktag]['item'] = $item;
 					else
-						unset($tagArray[$ktag]);
+						unset ($tagArray[$ktag]);
 					break;
-				case "crpCalendar":
-				case "crpVideo":
-				case "Pages":
-				case "Ephemerids":
-				case "FAQ":
-				case "locations":
-				case "Feeds":
-				case "Reviews":
-					if ( $item['obj_status'] == 'A')
+				case "crpCalendar" :
+				case "crpVideo" :
+				case "Pages" :
+				case "Ephemerids" :
+				case "FAQ" :
+				case "locations" :
+				case "Feeds" :
+				case "Reviews" :
+					if ($item['obj_status'] == 'A')
 						$tagArray[$ktag]['item'] = $item;
 					else
-						unset($tagArray[$ktag]);
+						unset ($tagArray[$ktag]);
 					break;
-				default:
+				default :
 					$tagArray[$ktag]['item'] = $item;
 					break;
 			}
@@ -263,10 +262,9 @@ function crpTag_user_main()
 	}
 
 	$pager = array (
-		'numitems' => pnModAPIFunc('crpTag',
-		'user',
-		'countitems'
-	), 'itemsperpage' => $modvars['tag_itemsperpage']);
+		'numitems' => pnModAPIFunc('crpTag', 'user', 'countitems'),
+		'itemsperpage' => $modvars['tag_itemsperpage']
+	);
 
 	$tag = new crpTag();
 	return $tag->ui->displayMain($tagArray, $modvars, $pager);
@@ -316,13 +314,11 @@ function crpTag_user_usertags($args)
 	}
 
 	$pager = array (
-		'numitems' => pnModAPIFunc('crpTag',
-		'user',
-		'countitems',
-		array (
+		'numitems' => pnModAPIFunc('crpTag', 'user', 'countitems', array (
 			'uid' => $uid
-		)
-	), 'itemsperpage' => $modvars['tag_itemsperpage']);
+		)),
+		'itemsperpage' => $modvars['tag_itemsperpage']
+	);
 
 	$tag = new crpTag();
 	return $tag->ui->displayMyTaggedItems($tagArray, $modvars, $pager, $uid);

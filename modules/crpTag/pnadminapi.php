@@ -2,7 +2,7 @@
 /**
  * crpTag
  *
- * @copyright (c) 2008-2009 Daniele Conca
+ * @copyright (c) 2008-2010 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -21,7 +21,8 @@ function crpTag_adminapi_deletetag($args=array())
 
 	if (!$args['objectid'] || !$args['extrainfo']['module'])
 	{
-		LogUtil :: registerError(_MODARGSERROR);
+		$dom = ZLanguage::getModuleDomain('crpTag');
+		LogUtil :: registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
 	}
 
 	$tag = new crpTag();
@@ -39,7 +40,8 @@ function crpTag_adminapi_removetag($args=array())
 
 	if (!$args['extrainfo']['module'])
 	{
-		LogUtil :: registerError(_MODARGSERROR);
+		$dom = ZLanguage::getModuleDomain('crpTag');
+		LogUtil :: registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
 	}
 
 	$tag = new crpTag();

@@ -1,8 +1,9 @@
 <?php
+
 /**
  * crpTag
  *
- * @copyright (c) 2008-2009 Daniele Conca
+ * @copyright (c) 2008-2010 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -24,30 +25,38 @@ function crpTag_init()
 	}
 
 	// Create the index
-  if (!DBUtil :: createIndex('tag_module', 'crptag_archive', array('module')))
-  	return false;
+	if (!DBUtil :: createIndex('tag_module', 'crptag_archive', array (
+			'module'
+		)))
+		return false;
 
-  if (!DBUtil :: createIndex('tag_archive', 'crptag_archive', array('id_tag','id_module', 'module'), array('UNIQUE' => '1')))
-  	return false;
+	if (!DBUtil :: createIndex('tag_archive', 'crptag_archive', array (
+			'id_tag',
+			'id_module',
+			'module'
+		), array (
+			'UNIQUE' => '1'
+		)))
+		return false;
 
 	// Set up module hooks for users
 	// embed on creation form
 	if (!pnModRegisterHook('item', 'new', 'GUI', 'crpTag', 'user', 'newtag'))
-      return false;
+		return false;
 	// embed on edit form
-  if (!pnModRegisterHook('item', 'create', 'API', 'crpTag', 'user', 'createtag'))
-      return false;
-  // embed on edit form
-  if (!pnModRegisterHook('item', 'modify', 'GUI', 'crpTag', 'user', 'modifytag'))
-      return false;
+	if (!pnModRegisterHook('item', 'create', 'API', 'crpTag', 'user', 'createtag'))
+		return false;
+	// embed on edit form
+	if (!pnModRegisterHook('item', 'modify', 'GUI', 'crpTag', 'user', 'modifytag'))
+		return false;
 	// embed on update
-  if (!pnModRegisterHook('item', 'update', 'API', 'crpTag', 'user', 'updatetag'))
-      return false;
-  // display hooked tags
+	if (!pnModRegisterHook('item', 'update', 'API', 'crpTag', 'user', 'updatetag'))
+		return false;
+	// display hooked tags
 	if (!pnModRegisterHook('item', 'display', 'GUI', 'crpTag', 'user', 'embedtag'))
 		return false;
 
-  // remove embed on item deletion
+	// remove embed on item deletion
 	if (!pnModRegisterHook('item', 'delete', 'API', 'crpTag', 'admin', 'deletetag'))
 		return false;
 
@@ -70,6 +79,8 @@ function crpTag_init()
 
 function crpTag_upgrade($oldversion)
 {
+	$dom = ZLanguage :: getModuleDomain('crpTag');
+
 	$tables = pnDBGetTables();
 	switch ($oldversion)
 	{
@@ -87,14 +98,14 @@ function crpTag_upgrade($oldversion)
 			return crpTag_upgrade("0.1.3");
 			break;
 		case "0.1.3" :
-      $sql = "ALTER TABLE $tables[crptag_archive] CHANGE `id_module` `id_module` VARCHAR( 25 ) NOT NULL DEFAULT '0'";
-      if (!DBUtil :: executeSQL($sql))
-				return LogUtil :: registerError(_UPDATETABLEFAILED);
-        
-      return crpTag_upgrade("0.1.4");
+			$sql = "ALTER TABLE $tables[crptag_archive] CHANGE `id_module` `id_module` VARCHAR( 25 ) NOT NULL DEFAULT '0'";
+			if (!DBUtil :: executeSQL($sql))
+				return LogUtil :: registerError(__('Error! Table update failed.', $dom));
+
+			return crpTag_upgrade("0.1.4");
 			break;
-    case "0.1.4" :
-      break;
+		case "0.1.4" :
+			break;
 	}
 	// Update successful
 	return true;
@@ -105,22 +116,22 @@ function crpTag_delete()
 	// Remove module hooks for users
 	// embed on creation form
 	if (!pnModUnRegisterHook('item', 'new', 'GUI', 'crpTag', 'user', 'newtag'))
-      return false;
+		return false;
 	// embed on edit form
-  if (!pnModUnRegisterHook('item', 'create', 'API', 'crpTag', 'user', 'createtag'))
-      return false;
-  // embed on edit form
-  if (!pnModUnRegisterHook('item', 'modify', 'GUI', 'crpTag', 'user', 'modifytag'))
-      return false;
+	if (!pnModUnRegisterHook('item', 'create', 'API', 'crpTag', 'user', 'createtag'))
+		return false;
+	// embed on edit form
+	if (!pnModUnRegisterHook('item', 'modify', 'GUI', 'crpTag', 'user', 'modifytag'))
+		return false;
 	// embed on update
-  if (!pnModUnRegisterHook('item', 'update', 'API', 'crpTag', 'user', 'updatetag'))
-      return false;
-  // display hooked video
+	if (!pnModUnRegisterHook('item', 'update', 'API', 'crpTag', 'user', 'updatetag'))
+		return false;
+	// display hooked video
 	if (!pnModUnRegisterHook('item', 'display', 'GUI', 'crpTag', 'user', 'embedtag'))
 		return false;
 
 	// Set up module hooks for admins
-  // remove embed on item deletion
+	// remove embed on item deletion
 	if (!pnModUnRegisterHook('item', 'delete', 'API', 'crpTag', 'admin', 'deletetag'))
 		return false;
 

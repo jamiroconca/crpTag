@@ -9,4 +9,4 @@
  * @package crpTag
  */
 
-Loader :: includeOnce('modules/crpTag/pnlang/eng/global_block.php');
+//Loader :: includeOnce('modules/crpTag/pnlang/eng/global_block.php');

@@ -3,7 +3,7 @@
 /**
  * crpTag
  *
- * @copyright (c) 2008-2009 Daniele Conca
+ * @copyright (c) 2008-2010 Daniele Conca
  * @link http://code.zikula.org/crptag Support and documentation
  * @author Daniele Conca <conca.daniele@gmail.com>
  * @license GNU/GPL - v.2.1
@@ -41,7 +41,7 @@ class crpTagDAO
 		$object = DBUtil :: insertObject($inputValues, 'crptag', 'id');
 		if (!$object)
 		{
-			LogUtil :: registerError(_CREATEFAILED);
+			LogUtil :: registerError(__('Error! Creation attempt failed.', $this->dom));
 			return false;
 		}
 		return $object['id'];
@@ -95,7 +95,7 @@ class crpTagDAO
 
 		if (!is_numeric($startnum) || !is_numeric($numitems))
 		{
-			return LogUtil :: registerError(_MODARGSERROR);
+			return LogUtil :: registerError(__('Error! Could not do what you wanted. Please check your input.', $this->dom));
 		}
 
 		$pntable = pnDBGetTables();
@@ -162,7 +162,7 @@ class crpTagDAO
 		// error message and return
 		if ($objArray === false)
 		{
-			return LogUtil :: registerError(_GETFAILED);
+			return LogUtil :: registerError(__('Error! Could not load items.', $this->dom));
 		}
 
 		foreach ($objArray as $kobj => $vobj)
@@ -252,9 +252,9 @@ class crpTagDAO
 		$archivecolumn = $pntable['crptag_archive_column'];
 
 		$sqlStatement = "DELETE $pntable[crptag]
-					FROM $pntable[crptag]
-					LEFT JOIN $pntable[crptag_archive] ON ($tagcolumn[id] = $archivecolumn[id_tag])
-					WHERE $archivecolumn[id_tag] IS NULL";
+							FROM $pntable[crptag]
+							LEFT JOIN $pntable[crptag_archive] ON ($tagcolumn[id] = $archivecolumn[id_tag])
+							WHERE $archivecolumn[id_tag] IS NULL";
 
 		return DBUtil :: executeSQL($sqlStatement);
 	}
@@ -269,7 +269,7 @@ class crpTagDAO
 
 		if (!is_numeric($startnum) || !is_numeric($numitems))
 		{
-			return LogUtil :: registerError(_MODARGSERROR);
+			return LogUtil :: registerError(__('Error! Could not do what you wanted. Please check your input.', $this->dom));
 		}
 
 		$pntable = pnDBGetTables();
@@ -309,8 +309,8 @@ class crpTagDAO
 		if ($id_tag || $id_module || $module || $uid)
 		{
 			$sqlStatement .= "LEFT JOIN $pntable[crptag_archive] ON ($pntable[crptag].$tagcolumn[id]=$pntable[crptag_archive].$archivecolumn[id_tag]) " .
-												"$where " .
-												"GROUP BY $groupby ";
+			"$where " .
+			"GROUP BY $groupby ";
 		}
 		$sqlStatement .= "ORDER BY $pntable[crptag].$tagcolumn[name]";
 
@@ -337,7 +337,7 @@ class crpTagDAO
 		// error message and return
 		if ($objArray === false)
 		{
-			return LogUtil :: registerError(_GETFAILED);
+			return LogUtil :: registerError(__('Error! Could not load items.', $this->dom));
 		}
 
 		// Return the items
