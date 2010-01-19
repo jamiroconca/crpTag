@@ -79,33 +79,23 @@ function crpTag_init()
 
 function crpTag_upgrade($oldversion)
 {
-	$dom = ZLanguage :: getModuleDomain('crpTag');
-
 	$tables = pnDBGetTables();
 	switch ($oldversion)
 	{
 		case "0.1.0" :
 			pnModSetVar('crpTag', 'tag_use_ajax', false);
-			return crpTag_upgrade("0.1.1");
-			break;
 		case "0.1.1" :
 			pnModSetVar('crpTag', 'tag_use_preset', false);
 			pnModSetVar('crpTag', 'tag_enabled_preset', null);
-			return crpTag_upgrade("0.1.2");
-			break;
 		case "0.1.2" :
 			pnModSetVar('crpTag', 'tag_edit_inline', null);
-			return crpTag_upgrade("0.1.3");
-			break;
 		case "0.1.3" :
 			$sql = "ALTER TABLE $tables[crptag_archive] CHANGE `id_module` `id_module` VARCHAR( 25 ) NOT NULL DEFAULT '0'";
 			if (!DBUtil :: executeSQL($sql))
-				return LogUtil :: registerError(__('Error! Table update failed.', $dom));
-
-			return crpTag_upgrade("0.1.4");
-			break;
+				return "0.1.3";
 		case "0.1.4" :
-			break;
+		case "0.1.5" :
+			// future upgrade routines
 	}
 	// Update successful
 	return true;
