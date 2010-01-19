@@ -1,5 +1,6 @@
 crpTag
-v0.1.4 - ?? ?? 2009
+v0.1.4 - 19 January 2010
+- Gettext language management
 - new tag sphere block
 - possibility to add tags to page title
 v0.1.3 - 08 January 2009
