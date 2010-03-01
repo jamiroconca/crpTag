@@ -16,25 +16,29 @@
 	</tr>
 	</thead>
 	
+	<tbody>
 	<!--[foreach from=$tagArray item=tag name=tagged]-->
-    <tr class="<!--[cycle values="odd,even"]-->">
+    <tr>
 
 		<td>
-			<a href="<!--[pnmodurl modname=$tag.modname]-->" title="<!--[gt text="View"]--> <!--[$tag.module]-->"><!--[$tag.modname]--></a>
+			<!--[pnmodurl modname=$tag.modname assign="tag_module"]-->
+			<a href="<!--[$tag_module|pnvarprepfordisplay]-->" title="<!--[gt text="View"]--> <!--[$tag.module]-->"><!--[$tag.modname]--></a>
 		</td>
 		
 		<td>
-			<a href="<!--[pnmodurl modname="crpTag" func="display" id=$tag.id]-->" title="<!--[gt text="View"]--> <!--[$tag.name]-->"><!--[$tag.name]--></a>
+			<!--[pnmodurl modname="crpTag" func="display" id=$tag.id assign="tag_url"]-->
+			<a href="<!--[$tag_url|pnvarprepfordisplay]-->" title="<!--[gt text="View"]--> <!--[$tag.name]-->"><!--[$tag.name]--></a>
 		</td>
 		
 		<td>
 			<!--[pnusergetvar name=uname uid=$tag.item.cr_uid assign=cr_uname]-->
 			<!--[pnmodurl modname=Profile func=view uname=$cr_uname assign=cr_profilelink]-->
 			<a href="<!--[crptagbuildurl module=$tag.modname func=$tag.func mapid=$tag.mapid id_module=$tag.id_module]-->" title="<!--[gt text="View"]--> <!--[$tag.item.title]-->"><!--[$tag.item.title]--></a>
-			- <!--[gt text="Created on"]--> <!--[$tag.item.cr_date|pndate_format]--> <!--[gt text="by"]--> <a href="<!--[$cr_profilelink]-->"><!--[$cr_uname]--></a>
-      	</td>
+			- <!--[gt text="Created on"]--> <!--[$tag.item.cr_date|pndate_format]--> <!--[gt text="by"]--> <a href="<!--[$cr_profilelink|pnvarprepfordisplay]-->"><!--[$cr_uname]--></a>
+   	</td>
     
-    </tr>
-  	<!--[/foreach]-->
+  </tr>
+  <!--[/foreach]-->
+  </tbody>	
 </table>
 <!--[pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum shift=1 img_prev=images/icons/extrasmall/previous.gif img_next=images/icons/extrasmall/next.gif]-->
