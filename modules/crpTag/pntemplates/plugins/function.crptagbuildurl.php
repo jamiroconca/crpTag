@@ -27,11 +27,11 @@ function smarty_function_crptagbuildurl($params, & $smarty)
 
 
 
-	return pnModURL($params['module'],
+	return DataUtil::formatForDisplay(pnModURL($params['module'],
 					'user',
 					$params['func'],
 					array (
 						"$params[mapid]" => $params['id_module']
-					));
+					)));
 }
 ?>
