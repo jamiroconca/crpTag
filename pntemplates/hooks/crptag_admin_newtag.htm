@@ -1,7 +1,7 @@
 <!--[if !$tag_use_ajax]-->
-<h4><!--[gt text="Full tags list" domain="crpTag"]--></h4>
+<h4><!--[gt text="Full tags list" domain="module_crptag"]--></h4>
 <div class="z-formrow">
-  	<label for="taglist"><!--[gt text="Tags (comma separated)" domain="crpTag"]--></label>
+  	<label for="taglist"><!--[gt text="Tags (comma separated)" domain="module_crptag"]--></label>
 	<input id="taglist" class="z-form-text" type="text" name="taglist" maxlength="128" size="48" value="" />
 </div>
 <!--[else]-->
@@ -10,13 +10,13 @@
 <!--[pnpageaddvar name="javascript" value="modules/crpTag/pnjavascript/taglist.js"]-->
 <!--[pnpageaddvar name="stylesheet" value="modules/crpTag/pnstyle/taglist.css"]-->
 
-<h4><!--[gt text="Full tags list" domain="crpTag"]--></h4>
+<h4><!--[gt text="Full tags list" domain="module_crptag"]--></h4>
 <div id="crptag-container" class="z-formrow">
 	<div id="crptag-list" class="input-text">
-      <label for="crptag-demo"><!--[gt text="Tags (comma separated)" domain="crpTag"]--></label>
+      <label for="crptag-demo"><!--[gt text="Tags (comma separated)" domain="module_crptag"]--></label>
       <input id="crptag-demo" type="text" name="taglist" value="" />
       <div id="crptag-auto">
-        <div class="default"><!--[gt text="Type some chars and already used tags will be suggested" domain="crpTag"]--></div> 
+        <div class="default"><!--[gt text="Type some chars and already used tags will be suggested" domain="module_crptag"]--></div> 
         <ul id="tagfeed" class="feed">
         	<!--[foreach item=tag from=$tagNameArray name=tagged]-->
 					<li value="<!--[$tag]-->"><!--[$tag]--></li>

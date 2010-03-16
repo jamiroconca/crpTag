@@ -1,16 +1,16 @@
 <div style="text-align:center;">
 <!--[if $interval]-->
-<h4><!--[gt text="Updated in the last" domain="crpTag"]--> <!--[$interval]--> <!--[gt text="days" domain="crpTag"]--></h4>
+<h4><!--[gt text="Updated in the last" domain="module_crptag"]--> <!--[$interval]--> <!--[gt text="days" domain="module_crptag"]--></h4>
 <!--[/if]-->
 <!--[foreach from=$tags item=tag]-->
 <span style="font-size:<!--[math equation="100+5*x" x=$tag.avg format="%.0f"]-->%;<!--[if ($tag.avg > 2)]-->font-weight:bold;<!--[/if]-->">
-	<a href="<!--[pnmodurl modname="crpTag" type="user" func="display" id=$tag.id|pnvarprepfordisplay]-->" title="<!--[gt text="View" domain="crpTag"]--> <!--[$tag.name|pnvarprephtmldisplay]-->"><!--[$tag.name|pnvarprephtmldisplay]--></a>
+	<a href="<!--[pnmodurl modname="crpTag" type="user" func="display" id=$tag.id|pnvarprepfordisplay]-->" title="<!--[gt text="View" domain="module_crptag"]--> <!--[$tag.name|pnvarprephtmldisplay]-->"><!--[$tag.name|pnvarprephtmldisplay]--></a>
 </span><!--[if $showcounter]--><em class="z-formnote">(<!--[$tag.tagcounter]-->)</em><!--[/if]-->
 <!--[/foreach]-->
 <!--[if empty($tags)]-->
-<!--[gt text="No tags in the last" domain="crpTag"]--> <!--[$interval]--> <!--[gt text="days" domain="crpTag"]-->
+<!--[gt text="No tags in the last" domain="module_crptag"]--> <!--[$interval]--> <!--[gt text="days" domain="module_crptag"]-->
 <!--[/if]-->
 </div>
 <div class="z-menu" style="text-align:center;">
-[&nbsp;<a href="<!--[pnmodurl modname="crpTag" type="user" func="display" tagmodule=$smodule|pnvarprepfordisplay]-->"><!--[gt text="Other tags in %s" tag1=$modname domain="crpTag"]--></a>]
+[&nbsp;<a href="<!--[pnmodurl modname="crpTag" type="user" func="display" tagmodule=$smodule|pnvarprepfordisplay]-->"><!--[gt text="Other tags in %s" tag1=$modname domain="module_crptag"]--></a>]
 </div>

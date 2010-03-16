@@ -6,7 +6,7 @@
 	<!--[else if $tagmodule]-->
 	<!--[assign var=listtitle value = $tagmodule]-->
 	<!--[/if]-->	
-	<caption><!--[gt text="Full tags list"]--> <!--[gt text="for"]-->: <!--[$listtitle]--></caption>
+	<caption><!--[gt text="Full tags list"]--> <!--[gt text="for"]-->: <!--[$listtitle|pnvarprepfordisplay]--></caption>
 	
 	<thead>
 	<tr>
@@ -18,23 +18,23 @@
 	
 	<tbody>
 	<!--[foreach from=$tagArray item=tag name=tagged]-->
-    <tr>
+    <tr class="<!--[cycle values="z-odd,z-even"]-->">
 
 		<td>
 			<!--[pnmodurl modname=$tag.modname assign="tag_module"]-->
-			<a href="<!--[$tag_module|pnvarprepfordisplay]-->" title="<!--[gt text="View"]--> <!--[$tag.module]-->"><!--[$tag.modname]--></a>
+			<a href="<!--[$tag_module|pnvarprepfordisplay]-->" title="<!--[gt text="View"]--> <!--[$tag.module]-->"><!--[$tag.modname|pnvarprepfordisplay]--></a>
 		</td>
 		
 		<td>
 			<!--[pnmodurl modname="crpTag" func="display" id=$tag.id assign="tag_url"]-->
-			<a href="<!--[$tag_url|pnvarprepfordisplay]-->" title="<!--[gt text="View"]--> <!--[$tag.name]-->"><!--[$tag.name]--></a>
+			<a href="<!--[$tag_url|pnvarprepfordisplay]-->" title="<!--[gt text="View"]--> <!--[$tag.name]-->"><!--[$tag.name|pnvarprepfordisplay]--></a>
 		</td>
 		
 		<td>
 			<!--[pnusergetvar name=uname uid=$tag.item.cr_uid assign=cr_uname]-->
 			<!--[pnmodurl modname=Profile func=view uname=$cr_uname assign=cr_profilelink]-->
-			<a href="<!--[crptagbuildurl module=$tag.modname func=$tag.func mapid=$tag.mapid id_module=$tag.id_module]-->" title="<!--[gt text="View"]--> <!--[$tag.item.title]-->"><!--[$tag.item.title]--></a>
-			- <!--[gt text="Created on"]--> <!--[$tag.item.cr_date|pndate_format]--> <!--[gt text="by"]--> <a href="<!--[$cr_profilelink|pnvarprepfordisplay]-->"><!--[$cr_uname]--></a>
+			<a href="<!--[crptagbuildurl module=$tag.modname func=$tag.func mapid=$tag.mapid id_module=$tag.id_module]-->" title="<!--[gt text="View"]--> <!--[$tag.item.title]-->"><!--[$tag.item.title|pnvarprepfordisplay]--></a>
+			- <!--[gt text="Created on"]--> <!--[$tag.item.cr_date|pndate_format]--> <!--[gt text="by"]--> <a href="<!--[$cr_profilelink|pnvarprepfordisplay]-->"><!--[$cr_uname|pnvarprepfordisplay]--></a>
    	</td>
     
   </tr>
