@@ -50,7 +50,7 @@ msgstr "Non si possiedono i requisiti per accedere al modulo"
 
 #: pnaccountapi.php:47
 msgid "My tags"
-msgstr "I mie Tag"
+msgstr "I miei Tag"
 
 #: pnblocks/tagsphere.php:93
 #: pntemplates/crptag_user_viewminetag.htm:39
