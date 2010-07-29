@@ -82,11 +82,15 @@ class crpTag
 
 		foreach ($tagArray as $kTag => $vTag)
 		{
+			$idTag = null;
+			$idCreated = null;
 			// clear initial and ending spaces
 			$vTag = trim($vTag);
 
 			if ($idTag = $this->dao->existTag($vTag))
+			{
 				$creatingTag[] = $idTag;
+			}
 			elseif (!empty ($vTag) && strlen($vTag) >= pnModGetVar('crpTag', 'tag_minlength'))
 			{
 				$idCreated = $this->dao->createTag(array (
@@ -100,10 +104,35 @@ class crpTag
 			}
 		}
 
+		$tagItemArray = pnModAPIFunc('crpTag', 'user', 'gettags', array (
+			'id_module' => $objectid,
+			'tagmodule' => $extrainfo['module'],
+			'extended' => false
+		));
+
 		// clean from old values
 		$this->dao->cleanArchive(null, $objectid, $extrainfo['module']);
 
 		$creatingTag = array_unique($creatingTag);
+
+		foreach ($tagItemArray as $kOldTag => $vOldTag)
+		{
+			if (in_array($vOldTag['id'], $creatingTag))
+			{
+				$this->dao->createArchive(array (
+					'id_tag' => $vOldTag['id'],
+					'id_module' => $objectid,
+					'module' => $extrainfo['module'],
+					'cr_date' => $vOldTag['cr_date'],
+					'cr_uid' => $vOldTag['cr_uid'],
+					'lu_date' => date('Y-m-d H:i:S'),
+					'lu_uid' => pnUserGetVar('uid')
+				));
+				$removeKey=array_search($vOldTag['id'], $creatingTag);
+				unset($creatingTag[$removeKey]);
+			}
+		}
+
 		foreach ($creatingTag as $vIdTag)
 		{
 			$this->dao->createArchive(array (
