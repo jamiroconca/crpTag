@@ -52,7 +52,7 @@ class crpTagDAO
 	 */
 	function createArchive($inputValues = array ())
 	{
-		return DBUtil :: insertObject($inputValues, 'crptag_archive');
+		return DBUtil :: insertObject($inputValues, 'crptag_archive', 'id', true);
 	}
 
 	/**
@@ -140,6 +140,8 @@ class crpTagDAO
 		"$pntable[crptag].$tagcolumn[name] as name, " .
 		"$pntable[crptag_archive].$archivecolumn[id_module] as id_module, " .
 		"$pntable[crptag_archive].$archivecolumn[module] as module, " .
+		"$pntable[crptag_archive].$archivecolumn[cr_uid] as cr_uid, " .
+		"$pntable[crptag_archive].$archivecolumn[cr_date] as cr_date, " .
 		"COUNT($pntable[crptag_archive].$archivecolumn[id_tag]) as tagcounter, " .
 		"MAX($pntable[crptag_archive].$archivecolumn[lu_date]) as lu_date " .
 		"FROM $pntable[crptag] " .
@@ -155,7 +157,10 @@ class crpTagDAO
 			'name',
 			'id_module',
 			'module',
-			'tagcounter'
+			'cr_uid',
+			'cr_date',
+			'tagcounter',
+			'lu_date'
 		), true);
 
 		// Check for an error with the database code, and if so set an appropriate
