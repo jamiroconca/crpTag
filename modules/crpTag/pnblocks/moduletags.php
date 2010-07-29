@@ -78,7 +78,8 @@ function crpTag_moduletagsblock_display($blockinfo)
 
 	$render->assign('tags', $items);
 	$render->assign('smodule', $vars['moduletags']);
-	$render->assign('modname', $moduleInfo['displayname']);
+	$render->assign('modname', $moduleInfo['name']);
+	$render->assign('moddisplayname', $moduleInfo['displayname']);
 	$render->assign('showcounter', $vars['showcounter']);
 	$render->assign('interval', $vars['interval']);
 	$render->assign($modvars);
