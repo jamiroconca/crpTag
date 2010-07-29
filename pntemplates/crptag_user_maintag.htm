@@ -1,5 +1,9 @@
 <!--[include file="crptag_user_menu.htm"]-->
 
+<!--[pnpagegetvar name="title" assign="currentTitle"]-->
+<!--[gt text="Full tags list" assign="aggTitle"]-->
+<!--[pnpagesetvar name="title" value=$currentTitle|cat:"$aggTitle"]-->
+
 <table class="z-datatable">
 	
 	<!--[gt text="Full tags list" assign="table_caption"]-->

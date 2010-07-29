@@ -1,12 +1,18 @@
 <!--[include file="crptag_user_menu.htm"]-->
 
+<!--[if $id_tag]-->
+<!--[assign var=listtitle value = $tagArray.0.name]-->
+<!--[else if $tagmodule]-->
+<!--[assign var=listtitle value = $tagmodule]-->
+<!--[/if]-->
+	
+<!--[pnpagegetvar name="title" assign="currentTitle"]-->
+<!--[gt text="Full tags list" assign="aggTitle"]-->
+<!--[pnpagesetvar name="title" value=$currentTitle|cat:"$listtitle $aggTitle"]-->
+
 <table class="z-datatable">
-	<!--[if $id_tag]-->
-	<!--[assign var=listtitle value = $tagArray.0.name]-->
-	<!--[else if $tagmodule]-->
-	<!--[assign var=listtitle value = $tagmodule]-->
-	<!--[/if]-->	
-	<caption><!--[gt text="Full tags list"]--> <!--[gt text="for"]-->: <!--[$listtitle|pnvarprepfordisplay]--></caption>
+	
+	<caption><!--[$aggTitle]--> <!--[gt text="for"]-->: <!--[$listtitle|pnvarprepfordisplay]--></caption>
 	
 	<thead>
 	<tr>

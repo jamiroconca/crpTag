@@ -1,8 +1,17 @@
 <!--[include file="crptag_user_menu.htm"]-->
 
+<!--[if $uid]-->
+<!--[pnusergetvar name=uname uid=$uid assign=cr_uname]-->
+<!--[assign var=listtitle value = $cr_uname]-->
+<!--[/if]-->
+
+<!--[pnpagegetvar name="title" assign="currentTitle"]-->
+<!--[gt text="Full tags list" assign="aggTitle"]-->
+<!--[pnpagesetvar name="title" value=$currentTitle|cat:"$listtitle $aggTitle"]-->
+
 <div class="z-center">
 	<!--[if pnModAvailable("Avatar") && pnUserGetVar('_YOURAVATAR',$uid)]-->
-	<img class="photo" src="<!--[pnmodgetvar module="Avatar" name="avatardir"]-->/<!--[pnusergetvar name=_YOURAVATAR uid=$uid]-->" alt="Avatar" />
+	<img class="photo" src="<!--[pnmodgetvar module="Users" name="avatarpath"]-->/<!--[pnusergetvar name=_YOURAVATAR uid=$uid]-->" alt="Avatar" />
 	<!--[elseif pnUserGetVar('_YOURAVATAR',$uid) neq '']-->
 	<img class="photo" src="images/avatar/<!--[pnusergetvar name=_YOURAVATAR uid=$uid]-->" alt="Avatar" />
 	<!--[else]-->
@@ -18,11 +27,8 @@
 </div>
 
 <table class="z-datatable">
-	<!--[if $uid]-->
-	<!--[pnusergetvar name=uname uid=$uid assign=cr_uname]-->
-	<!--[assign var=listtitle value = $cr_uname]-->
-	<!--[/if]-->	
-	<caption><!--[gt text="Full tags list"]--> <!--[gt text="for"]-->: <!--[$listtitle|pnvarprepfordisplay]--></caption>
+		
+	<caption><!--[$aggTitle]--> <!--[gt text="for"]-->: <!--[$listtitle|pnvarprepfordisplay]--></caption>
 	
 	<thead>
 	<tr>
@@ -34,7 +40,7 @@
 	
 	<tbody>
 	<!--[foreach from=$tagArray item=tag name=tagged]-->
-    <tr class="<!--[cycle values="z-odd,z-z-even"]-->">
+    <tr class="<!--[cycle values="z-odd,z-even"]-->">
 
 		<td>
 			<!--[pnmodurl modname=$tag.modname assign="tag_module"]-->
