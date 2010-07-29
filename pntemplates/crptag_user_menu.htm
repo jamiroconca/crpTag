@@ -4,6 +4,9 @@
 <h1><!--[gt text="crpTag"]--></h1>
 <div class="z-menu">
 <!--[pnmodurl modname="crpTag" type="user" assign="tag_list_url"]-->
-[&nbsp;<a href="<!--[$tag_list_url|pnvarprepfordisplay]-->"><!--[gt text="Full tags list"]--></a>]
+<!--[if pnUserLoggedIn()]-->
+<!--[pnmodurl modname="crpTag" type="usertags" uid=$uid assign="minetag_list_url"]-->
+<!--[/if]-->
+[&nbsp;<a href="<!--[$tag_list_url|pnvarprepfordisplay]-->"><!--[gt text="Full tags list"]--></a>&nbsp;<!--[if $minetag_list_url]-->|&nbsp;<a href="<!--[$minetag_list_url|pnvarprepfordisplay]-->"><!--[gt text="My tags"]--></a>&nbsp;<!--[/if]-->]
 </div>
 </div>
