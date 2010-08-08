@@ -85,12 +85,12 @@ function crpTag_tagsphereblock_display($blockinfo)
 	{
 		$itemurl = pnModUrl("crpTag", "user", "display", array (
 			'id' => $item['id']
-		));
+		), null, null, null, true);
 		// assign font size
-		$style = 'font-size:' . (10 + $item['avg']) . '%;';
-		if ($item['avg'] > 2)
+		$style = 'font-size:' . (10 + 2*(int)($item['avg'])) . 'pt;';
+		if ((int)($item['avg']) > 10)
 			$style .= 'font-weight:bold;';
-		$flashtags .= '<a style="' . $style . '" href="' . $itemurl . '" title="' . __('View', $dom) . ' ' . $item['name'] . '" rel="tag">' . $item['name'];
+		$flashtags .= "<a href='" . $itemurl . "' style='" . $style . "' title='" . __('View', $dom) . ' ' . $item['name'] . "' rel='tag'>" . $item['name'];
 		if ($vars['showcounter'])
 			$flashtags .= ' (' . $item['tagcounter'] . ')';
 		$flashtags .= '</a>';

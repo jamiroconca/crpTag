@@ -95,6 +95,7 @@ function crpTag_upgrade($oldversion)
 				return "0.1.3";
 		case "0.1.4" :
 		case "0.1.5" :
+		case "0.1.6" :
 			// future upgrade routines
 	}
 	// Update successful
