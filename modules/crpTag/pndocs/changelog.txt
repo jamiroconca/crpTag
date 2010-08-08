@@ -1,4 +1,15 @@
 crpTag
+v0.1.5 - 8 august 2010
+- fixed tagcloud issue when using shorturls
+- fixed html validation errors in forms
+- fixed broken links with tranlated zikula installations
+- fixed missing and wrong language domain in gettext-calls
+- added missing even/odd cycle in crptag_user_viewtag.htm
+- fixed viewminetag showing tags of the user who has just approved the content
+- added Missing pagetitles
+- more pnvarprepfordisplay
+- fixed text-align typo in crptag_user_viewminetag.htm
+- replaced even and odd with z-even and z-odd
 v0.1.4 - 19 January 2010
 - Gettext language management
 - new tag sphere block
