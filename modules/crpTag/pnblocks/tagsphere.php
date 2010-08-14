@@ -85,7 +85,7 @@ function crpTag_tagsphereblock_display($blockinfo)
 	{
 		$itemurl = pnModUrl("crpTag", "user", "display", array (
 			'id' => $item['id']
-		), null, null, null, true);
+		), null, null, true);
 		// assign font size
 		$style = 'font-size:' . (10 + 2*(int)($item['avg'])) . 'pt;';
 		if ((int)($item['avg']) > 10)
